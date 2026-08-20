@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEURIX'26 | National Level Technical Symposium</title>
+    <meta name="description" content="NEURIX'26 - National Level Technical Symposium by Aalim Muhammed Salegh College of Engineering. Innovation • Competition • Growth.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">NEURIX'26</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <div class="loader-text">Initializing Experience...</div>
+        </div>
+    </div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particle-canvas" class="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-icon">◆</span>
+                <span>NEURIX'26</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#events" class="nav-link">Events</a></li>
+                <li><a href="#schedule" class="nav-link">Schedule</a></li>
+                <li><a href="#register" class="nav-link nav-cta">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-badge" data-gsap="fade-up">
+                <span class="badge-dot"></span>
+                National Level Technical Symposium
+            </div>
+            <h1 class="hero-title" data-gsap="fade-up" data-delay="0.2">
+                <span class="title-line">NEURIX</span>
+                <span class="title-accent">'26</span>
+            </h1>
+            <p class="hero-tagline" data-gsap="fade-up" data-delay="0.4">
+                <span class="tag-item">Innovation</span>
+                <span class="tag-separator">•</span>
+                <span class="tag-item">Competition</span>
+                <span class="tag-separator">•</span>
+                <span class="tag-item">Growth</span>
+            </p>
+            <div class="hero-meta" data-gsap="fade-up" data-delay="0.6">
+                <div class="meta-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>17 September 2026</span>
+                </div>
+                <div class="meta-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>9:00 AM – 4:00 PM</span>
+                </div>
+                <div class="meta-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>Mechanical Block, AMS Campus</span>
+                </div>
+            </div>
+            <div class="hero-cta" data-gsap="fade-up" data-delay="0.8">
+                <a href="#register" class="btn btn-primary">
+                    <span>Register Now</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+                <a href="#events" class="btn btn-secondary">Explore Events</a>
+            </div>
+            <div class="hero-fee" data-gsap="fade-up" data-delay="1.0">
+                <span class="fee-label">Registration Fee</span>
+                <span class="fee-amount">₹150</span>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-container">
+            <div class="section-header" data-gsap="fade-up">
+                <span class="section-label">About The Event</span>
+                <h2 class="section-title">Where Innovation<br><span class="gradient-text">Meets Excellence</span></h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-card" data-gsap="fade-up" data-delay="0.1">
+                    <div class="about-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3>Innovation Hub</h3>
+                    <p>A platform for students to showcase cutting-edge ideas, research, and technological breakthroughs that shape the future.</p>
+                </div>
+                <div class="about-card" data-gsap="fade-up" data-delay="0.2">
+                    <div class="about-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Competitive Spirit</h3>
+                    <p>Battle it out with the brightest minds across the nation. Compete, learn, and elevate your skills to new heights.</p>
+                </div>
+                <div class="about-card" data-gsap="fade-up" data-delay="0.3">
+                    <div class="about-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>Network & Grow</h3>
+                    <p>Connect with like-minded peers, mentors, and industry professionals. Build relationships that last beyond the event.</p>
+                </div>
+            </div>
+            <div class="about-organizer" data-gsap="fade-up" data-delay="0.4">
+                <div class="organizer-glass">
+                    <div class="organizer-content">
+                        <span class="organizer-label">Organized By</span>
+                        <h3>Department of CSBS & AIML</h3>
+                        <p>Aalim Muhammed Salegh College of Engineering</p>
+                    </div>
+                    <div class="organizer-accent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <div class="section-container">
+            <div class="section-header" data-gsap="fade-up">
+                <span class="section-label">Events Lineup</span>
+                <h2 class="section-title">Choose Your<br><span class="gradient-text">Battleground</span></h2>
+                <p class="section-subtitle">Select up to 5 events. Mix technical and non-technical to showcase your versatility.</p>
+            </div>
+
+            <div class="events-category" data-gsap="fade-up">
+                <div class="category-header">
+                    <div class="category-icon tech-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Technical Events</h3>
+                </div>
+                <div class="events-grid">
+                    <div class="event-card" data-event="Paper Presentation" data-category="technical" data-gsap="fade-up" data-delay="0.05">
+                        <div class="event-glow"></div>
+                        <div class="event-content">
+                            <div class="event-select">
+                                <div class="checkbox">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="event-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                            </div>
+                            <h4>Paper Presentation</h4>
+                            <p>Present your research and innovative ideas to a panel of experts.</p>
+                            <div class="event-tags">
+                                <span class="tag">Research</span>
+                                <span class="tag">Innovation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card" data-event="Debate" data-category="technical" data-gsap="fade-up" data-delay="0.1">
+                        <div class="event-glow"></div>
+                        <div class="event-content">
+                            <div class="event-select">
+                                <div class="checkbox">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="event-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                </svg>
+                            </div>
+                            <h4>Debate</h4>
+                            <p>Engage in intellectual discourse and defend your perspectives on tech topics.</p>
+                            <div class="event-tags">
+                                <span class="tag">Communication</span>
+                                <span class="tag">Critical Thinking</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card" data-event="Technical Quiz" data-category="technical" data-gsap="fade-up" data-delay="0.15">
+                        <div class="event-glow"></div>
+                        <div class="event-content">
+                            <div class="event-select">
+                                <div class="checkbox">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="event-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                            </div>
+                            <h4>Technical Quiz</h4>
+                            <p>Test your technical knowledge across various domains of computer science.</p>
+                            <div class="event-tags">
+                                <span class="tag">Knowledge</span>
+                                <span class="tag">Speed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card" data-event="Debugging" data-category="technical" data-gsap="fade-up" data-delay="0.2">
+                        <div class="event-glow"></div>
+                        <div class="event-content">
+                            <div class="event-select">
+                                <div class="checkbox">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="event-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </div>
+                            <h4>Debugging</h4>
+                            <p>Find and fix bugs in code under time pressure. Precision is key.</p>
+                            <div class="event-tags">
+                                <span class="tag">Problem Solving</span>
+                                <span class="tag">Logic</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="events-category" data-gsap="fade-up">
+                <div class="category-header">
+                    <div class="category-icon nontech-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </div>
+                    <h3>Non-Technical Events</h3>
+                </div>
+                <div class="events-grid">
+                    <div class="event-card" data-event="Treasure Hunt" data-category="nontech" data-gsap="fade-up" data-delay="0.05">
+                        <div class="event-glow"></div>
+                        <div class="event-content">
+                            <div class="event-select">
+                                <div class="checkbox">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="event-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                                </svg>
+                            </div>
+                            <h4>Treasure Hunt</h4>
+                            <p>Solve clues, navigate the campus, and race to find the hidden treasure.</p>
+                            <div class="event-tags">
+                                <span class="tag">Adventure</span>
+                                <span class="tag">Teamwork</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card" data-event="Drawing" data-category="nontech" data-gsap="fade-up" data-delay="0.1">
+                        <div class="event-glow"></div>
+                        <div class="event-content">
+                            <div class="event-select">
+                                <div class="checkbox">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="event-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                                    <path d="M2 2l7.586 7.586"></path>
+                                    <circle cx="11" cy="11" r="2"></circle>
+                                </svg>
+                            </div>
+                            <h4>Drawing</h4>
+                            <p>Unleash your creativity on canvas. Theme-based artistic expression.</p>
+                            <div class="event-tags">
+                                <span class="tag">Creativity</span>
+                                <span class="tag">Art</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card" data-event="Find the BGM" data-category="nontech" data-gsap="fade-up" data-delay="0.15">
+                        <div class="event-glow"></div>
+                        <div class="event-content">
+                            <div class="event-select">
+                                <div class="checkbox">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="event-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M9 18V5l12-2v13"></path>
+                                    <circle cx="6" cy="18" r="3"></circle>
+                                    <circle cx="18" cy="16" r="3"></circle>
+                                </svg>
+                            </div>
+                            <h4>Find the BGM</h4>
+                            <p>Identify background music from clips. A test of your auditory memory.</p>
+                            <div class="event-tags">
+                                <span class="tag">Music</span>
+                                <span class="tag">Memory</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card" data-event="Photography" data-category="nontech" data-gsap="fade-up" data-delay="0.2">
+                        <div class="event-glow"></div>
+                        <div class="event-content">
+                            <div class="event-select">
+                                <div class="checkbox">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="event-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                            </div>
+                            <h4>Photography</h4>
+                            <p>Capture moments that tell stories. On-spot and theme-based photography.</p>
+                            <div class="event-tags">
+                                <span class="tag">Visual</span>
+                                <span class="tag">Storytelling</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card" data-event="Connections" data-category="nontech" data-gsap="fade-up" data-delay="0.25">
+                        <div class="event-glow"></div>
+                        <div class="event-content">
+                            <div class="event-select">
+                                <div class="checkbox">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="event-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                            </div>
+                            <h4>Connections</h4>
+                            <p>Connect the dots between images, words, and clues to find the answer.</p>
+                            <div class="event-tags">
+                                <span class="tag">Puzzle</span>
+                                <span class="tag">Lateral Thinking</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card" data-event="E-Sports" data-category="nontech" data-gsap="fade-up" data-delay="0.3">
+                        <div class="event-glow"></div>
+                        <div class="event-content">
+                            <div class="event-select">
+                                <div class="checkbox">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="event-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <line x1="6" y1="12" x2="10" y2="12"></line>
+                                    <line x1="8" y1="10" x2="8" y2="14"></line>
+                                    <line x1="15" y1="13" x2="15.01" y2="13"></line>
+                                    <line x1="18" y1="11" x2="18.01" y2="11"></line>
+                                    <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                                </svg>
+                            </div>
+                            <h4>E-Sports</h4>
+                            <p>Free Fire & E-Football tournaments. Compete for gaming supremacy.</p>
+                            <div class="event-tags">
+                                <span class="tag">Gaming</span>
+                                <span class="tag">Competition</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="events-counter" data-gsap="fade-up">
+                <div class="counter-glass">
+                    <span class="counter-label">Selected Events</span>
+                    <span class="counter-value"><span id="selectedCount">0</span> / 5</span>
+                </div>
+                <div id="eventWarning" class="event-warning">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    You can select a maximum of 5 events only.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="schedule">
+        <div class="section-container">
+            <div class="section-header" data-gsap="fade-up">
+                <span class="section-label">Event Timeline</span>
+                <h2 class="section-title">The Day<br><span class="gradient-text">Unfolds</span></h2>
+            </div>
+            <div class="timeline" data-gsap="fade-up">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-item" data-gsap="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-time">8:30 AM</span>
+                        <h4>Registration & Check-in</h4>
+                        <p>Welcome desk opens. Collect your event kit and ID badge.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-gsap="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-time">9:00 AM</span>
+                        <h4>Inaugural Ceremony</h4>
+                        <p>Opening address by dignitaries. Keynote speech and event briefing.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-gsap="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-time">10:00 AM</span>
+                        <h4>Technical Events Round 1</h4>
+                        <p>Paper Presentation, Debate, Technical Quiz, and Debugging commence.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-gsap="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-time">11:30 AM</span>
+                        <h4>Non-Technical Events</h4>
+                        <p>Treasure Hunt, Drawing, Find the BGM, Photography, Connections, and E-Sports.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-gsap="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-time">1:00 PM</span>
+                        <h4>Lunch Break</h4>
+                        <p>Networking lunch. Interact with participants and judges.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-gsap="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-time">2:00 PM</span>
+                        <h4>Technical Events Round 2</h4>
+                        <p>Final rounds and presentations for technical competitions.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-gsap="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-time">3:30 PM</span>
+                        <h4>Valedictory & Prize Distribution</h4>
+                        <p>Celebrate the winners. Certificates and prizes for all categories.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-gsap="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-time">4:00 PM</span>
+                        <h4>Event Concludes</h4>
+                        <p>Thank you for being part of NEURIX'26. See you next year!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="register" class="register">
+        <div class="section-container">
+            <div class="register-grid">
+                <div class="register-info" data-gsap="fade-right">
+                    <span class="section-label">Secure Your Spot</span>
+                    <h2 class="section-title">Register for<br><span class="gradient-text">NEURIX'26</span></h2>
+                    <p class="register-desc">Fill in your details and select your events. Limited seats available. Register early to secure your participation.</p>
+
+                    <div class="register-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <span>Max 5 events per participant</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <span>Registration fee: ₹150 only</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <span>Certificate for all participants</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <span>Exciting prizes for winners</span>
+                        </div>
+                    </div>
+
+                    <div class="register-contact">
+                        <h4>Need Help?</h4>
+                        <p>Contact the organizing team for any queries regarding registration or events.</p>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <span>csbs@aalimmuhammedsalegh.ac.in</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="register-form-wrapper" data-gsap="fade-left">
+                    <div class="form-glass">
+                        <form id="registrationForm" class="registration-form">
+                            <div class="form-group">
+                                <label for="name">Full Name <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="college">College Name <span class="required">*</span></label>
+                                <input type="text" id="college" name="college" required placeholder="Enter your college name">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="department">Department <span class="required">*</span></label>
+                                    <select id="department" name="department" required>
+                                        <option value="" disabled selected>Select Department</option>
+                                        <option value="CSE">CSE</option>
+                                        <option value="IT">IT</option>
+                                        <option value="CSBS">CSBS</option>
+                                        <option value="AIML">AIML</option>
+                                        <option value="ECE">ECE</option>
+                                        <option value="EEE">EEE</option>
+                                        <option value="MECH">MECH</option>
+                                        <option value="CIVIL">CIVIL</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="year">Year <span class="required">*</span></label>
+                                    <select id="year" name="year" required>
+                                        <option value="" disabled selected>Select Year</option>
+                                        <option value="1st Year">1st Year</option>
+                                        <option value="2nd Year">2nd Year</option>
+                                        <option value="3rd Year">3rd Year</option>
+                                        <option value="4th Year">4th Year</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number <span class="required">*</span></label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email <span class="required">*</span></label>
+                                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Selected Events <span class="required">*</span></label>
+                                <div id="formEventList" class="form-event-list">
+                                    <p class="no-events">No events selected. Please select events from the Events section above.</p>
+                                </div>
+                                <div id="formEventWarning" class="form-event-warning">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                    You can select a maximum of 5 events only.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Payment Details</label>
+                                <div class="payment-info">
+                                    <div class="payment-row">
+                                        <span>Registration Fee</span>
+                                        <span>₹150</span>
+                                    </div>
+                                    <div class="payment-row payment-total">
+                                        <span>Total Amount</span>
+                                        <span>₹150</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-submit" id="submitBtn">
+                                <span class="btn-text">Complete Registration</span>
+                                <span class="btn-loader">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+                                    </svg>
+                                </span>
+                            </button>
+
+                            <div id="formMessage" class="form-message"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-glow"></div>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">NEURIX'26</div>
+                <p class="footer-tagline">Innovation • Competition • Growth</p>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>Organized by Department of CSBS & AIML</p>
+                <p>Aalim Muhammed Salegh College of Engineering</p>
+                <p class="footer-copyright">© 2026 NEURIX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h3>Registration Successful!</h3>
+            <p>Thank you for registering for NEURIX'26. We have received your details and will contact you shortly with further instructions.</p>
+            <button class="btn btn-primary modal-close">Awesome!</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
