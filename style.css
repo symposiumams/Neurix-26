@@ -1031,3 +1031,265 @@
         opacity: 0;
     }
 }
+
+
+@media (max-width: 768px) {
+
+    .navbar {
+        width: 100%;
+        padding: 12px 0;
+    }
+
+    .navbar.scrolled {
+        padding: 10px 0;
+    }
+
+    .nav-container {
+        width: 100%;
+
+        padding: 0 16px;
+
+        min-height: 42px;
+    }
+
+
+    /* LOGO */
+
+    .nav-logo {
+        gap: 8px;
+
+        height: 42px;
+
+        font-size: 16px;
+    }
+
+    .nav-logo img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .nav-logo span {
+        font-size: 16px;
+        letter-spacing: 0.7px;
+    }
+
+
+    /* HAMBURGER */
+
+    .nav-toggle {
+        display: flex !important;
+
+        width: 42px;
+        height: 42px;
+
+        padding: 9px;
+
+        margin: 0;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 5px;
+
+        background: rgba(255, 255, 255, 0.04);
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-radius: 10px;
+
+        flex-shrink: 0;
+
+        position: relative;
+        z-index: 1003;
+    }
+
+    .nav-toggle span {
+        width: 22px;
+        height: 2px;
+
+        display: block;
+
+        background: #fff;
+
+        border-radius: 2px;
+
+        transition: all 0.3s ease;
+    }
+
+
+    /* ---------- MOBILE MENU ---------- */
+
+    .nav-menu {
+        position: fixed;
+
+        top: 0;
+        right: -100%;
+
+        width: 82%;
+        max-width: 330px;
+
+        height: 100vh;
+        height: 100dvh;
+
+        margin: 0;
+        padding: 100px 24px 30px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: flex-start;
+        align-items: stretch;
+
+        gap: 8px;
+
+        background: rgba(5, 5, 5, 0.98);
+
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+
+        border-left: 1px solid rgba(212, 175, 55, 0.2);
+
+        overflow-y: auto;
+
+        z-index: 1001;
+
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+        box-shadow:
+            -20px 0 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        list-style: none;
+    }
+
+    .nav-link {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+
+        padding: 14px 16px;
+
+        border-radius: 10px;
+
+        font-size: 16px;
+
+        color: rgba(255, 255, 255, 0.75);
+
+        transition: all 0.25s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: #fff;
+
+        background: rgba(212, 175, 55, 0.08);
+    }
+
+    .nav-link::after {
+        display: none !important;
+    }
+
+    .nav-cta {
+        width: 100%;
+
+        justify-content: center;
+
+        margin-top: 12px;
+
+        padding: 13px 16px !important;
+    }
+
+
+    /* HAMBURGER → X */
+
+    .nav-toggle.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        padding: 10px 0;
+    }
+
+    .nav-container {
+        padding: 0 12px;
+    }
+
+    .nav-logo {
+        gap: 7px;
+    }
+
+    .nav-logo img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .nav-logo span {
+        font-size: 14px;
+        letter-spacing: 0.5px;
+    }
+
+    .nav-toggle {
+        width: 40px;
+        height: 40px;
+
+        padding: 8px;
+    }
+
+    .nav-toggle span {
+        width: 20px;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE — 360px
+   ===================================================== */
+
+@media (max-width: 360px) {
+
+    .nav-container {
+        padding: 0 10px;
+    }
+
+    .nav-logo {
+        gap: 6px;
+    }
+
+    .nav-logo img {
+        width: 31px;
+        height: 31px;
+    }
+
+    .nav-logo span {
+        font-size: 13px;
+    }
+
+    .nav-toggle {
+        width: 38px;
+        height: 38px;
+    }
+}
