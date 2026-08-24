@@ -106,23 +106,39 @@ body {
 }
 
 .loader-logo {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    font-weight: 900;
-    background: var(--gold-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: 4px;
-    margin-bottom: 2rem;
-    animation: loaderPulse 2s ease-in-out infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
-@keyframes loaderPulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(0.98); }
+.loader-logo img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    display: block;
+
+    animation: loaderLogoPulse 2s ease-in-out infinite;
 }
 
+@keyframes loaderLogoPulse {
+
+    0% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+
+}
 .loader-bar {
     width: 200px;
     height: 2px;
@@ -1643,4 +1659,73 @@ body {
 
 [data-gsap="fade-left"] {
     transform: translateX(40px);
+}
+
+
+
+
+
+
+
+/* ============================================
+   DISABLED EVENT - PAIR ALREADY SELECTED
+   ============================================ */
+
+.event-card.disabled {
+    opacity: 0.35;
+    filter: grayscale(0.7);
+    cursor: not-allowed;
+    transform: scale(0.98);
+    pointer-events: auto;
+    position: relative;
+}
+
+.event-card.disabled::after {
+    content: "PAIR ALREADY SELECTED";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    padding: 5px 9px;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+
+    background: rgba(0,0,0,0.45);
+    color: rgba(255,255,255,0.6);
+
+    pointer-events: none;
+}
+
+.event-card.disabled .checkbox {
+    opacity: 0.4;
+}
+
+.event-card.disabled:hover {
+    transform: scale(0.98);
+}
+
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.nav-logo img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    display: block;
+}
+
+.nav-logo span {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
