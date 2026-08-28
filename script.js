@@ -1,38 +1,36 @@
 /* =========================================================
    NEURIX'26 — COMPLETE FRONTEND JS
-   FIXED:
-   - Event cards generated automatically
+   VERSION: CASE-SAFE EVENT SYSTEM
+
+   FEATURES:
+   - Automatic event cards
    - Event selection
-   - Beautiful selected state
-   - Pair restrictions
    - Maximum 5 events
+   - Event pair restrictions
+   - Case-safe event names
+   - Event details modal
    - Form validation
-   - Base64 payment upload
-   - Google Apps Script compatible
-   - Mobile safe
+   - Payment screenshot Base64 upload
+   - Google Apps Script submission
+   - Mobile navigation
+   - Scroll navigation
+   - Particles
    ========================================================= */
 
 
 /* =========================================================
-   CONFIGURATION
+   01. CONFIGURATION
    ========================================================= */
 
 const MAX_EVENTS = 5;
 const REGISTRATION_FEE = 150;
-
-
-/*
-   IMPORTANT:
-   PUT YOUR DEPLOYED GOOGLE APPS SCRIPT
-   /exec URL HERE.
-*/
 
 const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbyRHhfmDVA_4v-7mQgLH5c7UoM2TErPTTMuO81bfwzSUDOvA7eGxfAneynJtF5-NibV/exec";
 
 
 /* =========================================================
-   EVENT DATA
+   02. EVENT DATA
    ========================================================= */
 
 const EVENTS = {
@@ -42,7 +40,6 @@ const EVENTS = {
         {
             id: "prompt-battle",
             name: "Prompt Battle",
-            backendName: "Prompt Battle",
             description:
                 "Challenge your creativity and AI thinking skills by crafting powerful prompts and solving real-world challenges.",
             category: "Technical",
@@ -54,7 +51,6 @@ const EVENTS = {
         {
             id: "debug-arena",
             name: "Debug Arena",
-            backendName: "Debug Arena",
             description:
                 "Find the bugs, understand the logic and fix the code before your opponents.",
             category: "Technical",
@@ -66,7 +62,6 @@ const EVENTS = {
         {
             id: "paper-presentation",
             name: "Paper Presentation",
-            backendName: "Paper Presentation",
             description:
                 "Present innovative ideas, emerging technologies and research concepts with confidence.",
             category: "Technical",
@@ -78,7 +73,6 @@ const EVENTS = {
         {
             id: "canvas-clash",
             name: "Canvas Clash",
-            backendName: "Canvas Clash",
             description:
                 "Turn your ideas into visually powerful posters and showcase your creative design skills.",
             category: "Technical",
@@ -90,7 +84,6 @@ const EVENTS = {
         {
             id: "web-craft",
             name: "Web Craft",
-            backendName: "Web Craft",
             description:
                 "Design and build an impressive web experience while competing against other creators.",
             category: "Technical",
@@ -107,7 +100,6 @@ const EVENTS = {
         {
             id: "frames-ams",
             name: "Frames of AMS",
-            backendName: "Frames of AMS",
             description:
                 "Capture the world through your lens and showcase your eye for storytelling and composition.",
             category: "Non-Technical",
@@ -119,7 +111,6 @@ const EVENTS = {
         {
             id: "ultimate-xi",
             name: "ULTIMATE XI",
-            backendName: "ULTIMATE XI",
             description:
                 "Build your ultimate squad, master your tactics and battle your way to victory.",
             category: "eSports",
@@ -131,7 +122,6 @@ const EVENTS = {
         {
             id: "final-stand",
             name: "FINAL STAND",
-            backendName: "FINAL STAND",
             description:
                 "Survive the battlefield, outplay your opponents and become the last squad standing.",
             category: "eSports",
@@ -143,7 +133,6 @@ const EVENTS = {
         {
             id: "chase-clue",
             name: "Chase the Clue",
-            backendName: "Chase the Clue",
             description:
                 "Follow the clues, solve the puzzles and race against time to discover the hidden treasure.",
             category: "Non-Technical",
@@ -155,7 +144,6 @@ const EVENTS = {
         {
             id: "bgm-blitz",
             name: "BGM Blitz",
-            backendName: "BGM Blitz",
             description:
                 "Test your musical memory and identify iconic background music faster than everyone else.",
             category: "Non-Technical",
@@ -167,7 +155,6 @@ const EVENTS = {
         {
             id: "think-link",
             name: "Think & Link",
-            backendName: "Think & Link",
             description:
                 "Connect the clues, identify the hidden relationships and prove your logical thinking.",
             category: "Non-Technical",
@@ -179,7 +166,6 @@ const EVENTS = {
         {
             id: "corporate-walk",
             name: "Corporate Walk",
-            backendName: "Corporate Walk",
             description:
                 "Step into the corporate world and showcase confidence, personality, presentation and professional style.",
             category: "Special Event",
@@ -194,7 +180,7 @@ const EVENTS = {
 
 
 /* =========================================================
-   EVENT PAIRS
+   03. EVENT PAIRS
    ========================================================= */
 
 const EVENT_PAIRS = {
@@ -218,14 +204,14 @@ const EVENT_PAIRS = {
 
 
 /* =========================================================
-   STATE
+   04. STATE
    ========================================================= */
 
 let selectedEvents = [];
 
 
 /* =========================================================
-   GET ALL EVENTS
+   05. GET ALL EVENTS
    ========================================================= */
 
 function getAllEvents() {
@@ -239,7 +225,7 @@ function getAllEvents() {
 
 
 /* =========================================================
-   FIND EVENT
+   06. FIND EVENT BY ID
    ========================================================= */
 
 function getEventById(id) {
@@ -252,7 +238,53 @@ function getEventById(id) {
 
 
 /* =========================================================
-   DOM READY
+   07. NORMALIZE EVENT NAME
+   =========================================================
+   
+   This function makes frontend event names consistent.
+
+   Example:
+
+   "Prompt Battle"
+   "prompt battle"
+   "PROMPT BATTLE"
+
+   All are converted to:
+
+   "Prompt Battle"
+
+   ========================================================= */
+
+function normalizeEventName(name) {
+
+    if (!name) {
+        return "";
+    }
+
+    const cleanName =
+        String(name)
+            .trim()
+            .replace(/\s+/g, " ")
+            .toLowerCase();
+
+    const event =
+        getAllEvents().find(
+            item =>
+                item.name
+                    .trim()
+                    .replace(/\s+/g, " ")
+                    .toLowerCase() === cleanName
+        );
+
+    return event
+        ? event.name
+        : String(name).trim();
+
+}
+
+
+/* =========================================================
+   08. DOM READY
    ========================================================= */
 
 document.addEventListener(
@@ -290,7 +322,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   LOADER
+   09. LOADER
    ========================================================= */
 
 function initializeLoader() {
@@ -337,7 +369,7 @@ function initializeLoader() {
 
 
 /* =========================================================
-   NAVIGATION
+   10. NAVIGATION
    ========================================================= */
 
 function initializeNavigation() {
@@ -415,7 +447,7 @@ function initializeNavigation() {
 
 
 /* =========================================================
-   GENERATE EVENT CARDS
+   11. GENERATE EVENT CARDS
    ========================================================= */
 
 function generateEventCards() {
@@ -454,7 +486,7 @@ function generateEventCards() {
 
 
 /* =========================================================
-   CREATE EVENT CARD
+   12. CREATE EVENT CARD
    ========================================================= */
 
 function createEventCard(event) {
@@ -475,8 +507,11 @@ function createEventCard(event) {
                 </div>
 
                 <div class="event-status">
+
                     <span class="status-dot"></span>
+
                     Available
+
                 </div>
 
             </div>
@@ -528,6 +563,7 @@ function createEventCard(event) {
                     class="event-select-btn"
                     data-select-event="${escapeAttribute(event.id)}"
                 >
+
                     <span class="select-text">
                         Select
                     </span>
@@ -535,6 +571,7 @@ function createEventCard(event) {
                     <span class="selected-text">
                         ✓ Selected
                     </span>
+
                 </button>
 
             </div>
@@ -547,7 +584,7 @@ function createEventCard(event) {
 
 
 /* =========================================================
-   INITIALIZE SELECTION
+   13. INITIALIZE SELECTION
    ========================================================= */
 
 function initializeSelection() {
@@ -603,7 +640,7 @@ function initializeSelection() {
 
 
 /* =========================================================
-   TOGGLE EVENT
+   14. TOGGLE EVENT SELECTION
    ========================================================= */
 
 function toggleEventSelection(id) {
@@ -614,7 +651,9 @@ function toggleEventSelection(id) {
     if (!event) return;
 
 
-    /* REMOVE */
+    /* =====================================================
+       REMOVE EVENT
+       ===================================================== */
 
     if (
         selectedEvents.includes(id)
@@ -633,7 +672,9 @@ function toggleEventSelection(id) {
     }
 
 
-    /* MAXIMUM */
+    /* =====================================================
+       MAXIMUM 5
+       ===================================================== */
 
     if (
         selectedEvents.length >=
@@ -649,7 +690,9 @@ function toggleEventSelection(id) {
     }
 
 
-    /* PAIR */
+    /* =====================================================
+       CHECK PAIR
+       ===================================================== */
 
     const pair =
         EVENT_PAIRS[id];
@@ -672,6 +715,10 @@ function toggleEventSelection(id) {
     }
 
 
+    /* =====================================================
+       ADD EVENT
+       ===================================================== */
+
     selectedEvents.push(id);
 
     updateEventUI();
@@ -680,7 +727,7 @@ function toggleEventSelection(id) {
 
 
 /* =========================================================
-   UPDATE EVENT UI
+   15. UPDATE EVENT UI
    ========================================================= */
 
 function updateEventUI() {
@@ -746,7 +793,7 @@ function updateEventUI() {
 
 
 /* =========================================================
-   COUNTER
+   16. COUNTER
    ========================================================= */
 
 function updateCounter() {
@@ -766,7 +813,7 @@ function updateCounter() {
 
 
 /* =========================================================
-   FORM EVENT LIST
+   17. FORM EVENT LIST
    ========================================================= */
 
 function updateFormEventList() {
@@ -800,6 +847,10 @@ function updateFormEventList() {
 
                 const event =
                     getEventById(id);
+
+                if (!event) {
+                    return "";
+                }
 
                 return `
 
@@ -846,7 +897,7 @@ function updateFormEventList() {
 
 
 /* =========================================================
-   PAYMENT TOTAL
+   18. PAYMENT TOTAL
    ========================================================= */
 
 function updatePaymentTotal() {
@@ -865,7 +916,7 @@ function updatePaymentTotal() {
 
 
 /* =========================================================
-   WARNING
+   19. EVENT WARNING
    ========================================================= */
 
 function showEventWarning(message) {
@@ -914,7 +965,7 @@ function showEventWarning(message) {
 
 
 /* =========================================================
-   EVENT MODAL
+   20. EVENT MODAL
    ========================================================= */
 
 function initializeEventModal() {
@@ -978,7 +1029,7 @@ function initializeEventModal() {
 
 
 /* =========================================================
-   OPEN MODAL
+   21. OPEN EVENT MODAL
    ========================================================= */
 
 function openEventModal(id) {
@@ -1077,7 +1128,7 @@ function openEventModal(id) {
 
 
 /* =========================================================
-   CLOSE MODAL
+   22. CLOSE EVENT MODAL
    ========================================================= */
 
 function closeEventModal() {
@@ -1109,7 +1160,7 @@ function closeEventModal() {
 
 
 /* =========================================================
-   FORM
+   23. FORM INITIALIZATION
    ========================================================= */
 
 function initializeForm() {
@@ -1131,7 +1182,7 @@ function initializeForm() {
 
 
 /* =========================================================
-   SUBMIT REGISTRATION
+   24. SUBMIT REGISTRATION
    ========================================================= */
 
 async function handleRegistrationSubmit(event) {
@@ -1144,7 +1195,7 @@ async function handleRegistrationSubmit(event) {
 
 
     /* =====================================================
-       VALIDATE EVENTS
+       EVENT VALIDATION
        ===================================================== */
 
     if (
@@ -1168,7 +1219,7 @@ async function handleRegistrationSubmit(event) {
 
 
     /* =====================================================
-       VALIDATE URL
+       URL VALIDATION
        ===================================================== */
 
     if (
@@ -1189,7 +1240,7 @@ async function handleRegistrationSubmit(event) {
 
 
     /* =====================================================
-       BASIC HTML VALIDATION
+       HTML VALIDATION
        ===================================================== */
 
     if (
@@ -1209,7 +1260,7 @@ async function handleRegistrationSubmit(event) {
 
 
     /* =====================================================
-       BUTTON
+       SUBMIT BUTTON
        ===================================================== */
 
     const submitButton =
@@ -1233,7 +1284,7 @@ async function handleRegistrationSubmit(event) {
     try {
 
         /* =================================================
-           FORM VALUES
+           FORM DATA
            ================================================= */
 
         const formData =
@@ -1264,7 +1315,51 @@ async function handleRegistrationSubmit(event) {
 
 
         /* =================================================
-           CONVERT IMAGE TO BASE64
+           FILE SIZE VALIDATION
+           ================================================= */
+
+        const MAX_FILE_SIZE =
+            5 * 1024 * 1024;
+
+
+        if (
+            file.size > MAX_FILE_SIZE
+        ) {
+
+            throw new Error(
+                "Payment screenshot must be less than 5 MB."
+            );
+
+        }
+
+
+        /* =================================================
+           FILE TYPE VALIDATION
+           ================================================= */
+
+        const allowedTypes = [
+            "image/jpeg",
+            "image/jpg",
+            "image/png",
+            "image/webp"
+        ];
+
+
+        if (
+            !allowedTypes.includes(
+                file.type
+            )
+        ) {
+
+            throw new Error(
+                "Only JPG, PNG or WEBP images are allowed."
+            );
+
+        }
+
+
+        /* =================================================
+           BASE64
            ================================================= */
 
         const base64 =
@@ -1272,7 +1367,7 @@ async function handleRegistrationSubmit(event) {
 
 
         /* =================================================
-           CREATE URL ENCODED DATA
+           URL ENCODED DATA
            ================================================= */
 
         const params =
@@ -1290,13 +1385,6 @@ async function handleRegistrationSubmit(event) {
             formData.get("college") || ""
         );
 
-
-        /*
-           Your HTML currently doesn't contain
-           department/year.
-
-           Apps Script will now use default values.
-        */
 
         params.append(
             "department",
@@ -1329,7 +1417,7 @@ async function handleRegistrationSubmit(event) {
 
 
         /* =================================================
-           EVENTS
+           EVENT NAMES
            ================================================= */
 
         const selectedEventNames =
@@ -1340,17 +1428,27 @@ async function handleRegistrationSubmit(event) {
                         getEventById(id);
 
                     return eventData
-                        ? eventData.backendName
+                        ? normalizeEventName(
+                            eventData.name
+                        )
                         : "";
 
                 })
                 .filter(Boolean);
 
 
-        /*
-           Apps Script expects comma-separated
-           event names.
-        */
+        /* =================================================
+           IMPORTANT
+
+           Send exact normalized event names.
+
+           Example:
+
+           Prompt Battle
+           Debug Arena
+           ULTIMATE XI
+
+           ================================================= */
 
         params.append(
             "events",
@@ -1359,7 +1457,7 @@ async function handleRegistrationSubmit(event) {
 
 
         /* =================================================
-           PAYMENT
+           PAYMENT DATA
            ================================================= */
 
         params.append(
@@ -1382,6 +1480,11 @@ async function handleRegistrationSubmit(event) {
 
         console.log(
             "Submitting registration..."
+        );
+
+        console.log(
+            "Selected events:",
+            selectedEventNames
         );
 
 
@@ -1424,6 +1527,10 @@ async function handleRegistrationSubmit(event) {
         );
 
 
+        /* =================================================
+           PARSE RESPONSE
+           ================================================= */
+
         let result;
 
 
@@ -1442,6 +1549,10 @@ async function handleRegistrationSubmit(event) {
 
         }
 
+
+        /* =================================================
+           BACKEND ERROR
+           ================================================= */
 
         if (
             !result.success
@@ -1464,6 +1575,10 @@ async function handleRegistrationSubmit(event) {
             "success"
         );
 
+
+        /* =================================================
+           RESET FORM
+           ================================================= */
 
         form.reset();
 
@@ -1512,7 +1627,7 @@ async function handleRegistrationSubmit(event) {
 
 
 /* =========================================================
-   FILE → BASE64
+   25. FILE → BASE64
    ========================================================= */
 
 function fileToBase64(file) {
@@ -1532,11 +1647,6 @@ function fileToBase64(file) {
                     );
 
 
-                /*
-                   Remove:
-                   data:image/jpeg;base64,
-                */
-
                 const base64 =
                     result.includes(
                         "base64,"
@@ -1547,7 +1657,9 @@ function fileToBase64(file) {
                         : result;
 
 
-                resolve(base64);
+                resolve(
+                    base64
+                );
 
             };
 
@@ -1575,7 +1687,7 @@ function fileToBase64(file) {
 
 
 /* =========================================================
-   FORM MESSAGE
+   26. FORM MESSAGE
    ========================================================= */
 
 function showFormMessage(
@@ -1619,7 +1731,7 @@ function showFormMessage(
 
 
 /* =========================================================
-   SCROLL
+   27. SCROLL NAVIGATION
    ========================================================= */
 
 function initializeScroll() {
@@ -1693,7 +1805,7 @@ function initializeScroll() {
 
 
 /* =========================================================
-   PARTICLES
+   28. PARTICLES
    ========================================================= */
 
 function initializeParticles() {
@@ -1910,7 +2022,7 @@ function initializeParticles() {
 
 
 /* =========================================================
-   HELPERS
+   29. ESCAPE HTML
    ========================================================= */
 
 function escapeHTML(value) {
@@ -1940,6 +2052,10 @@ function escapeHTML(value) {
 }
 
 
+/* =========================================================
+   30. ESCAPE ATTRIBUTE
+   ========================================================= */
+
 function escapeAttribute(value) {
 
     return escapeHTML(value);
@@ -1948,7 +2064,7 @@ function escapeAttribute(value) {
 
 
 /* =========================================================
-   GLOBAL FUNCTIONS
+   31. GLOBAL FUNCTIONS
    ========================================================= */
 
 window.toggleEventSelection =
@@ -1962,7 +2078,7 @@ window.closeEventModal =
 
 
 /* =========================================================
-   DEBUG
+   32. DEBUG
    ========================================================= */
 
 console.log(
