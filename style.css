@@ -4547,3 +4547,1068 @@ textarea:focus-visible {
             auto !important;
     }
 }
+
+
+/* =========================================================
+   NEURIX'26 — FINAL PREMIUM 3D + MOBILE OVERRIDE
+   Added as the final layer so the existing HTML/JS selectors
+   continue to work without structural changes.
+   ========================================================= */
+
+/* ---------- 01. GLOBAL 3D ATMOSPHERE ---------- */
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 12% 8%, rgba(212,175,55,.11), transparent 20%),
+        radial-gradient(circle at 88% 18%, rgba(0,212,255,.055), transparent 20%),
+        radial-gradient(circle at 18% 78%, rgba(168,85,247,.055), transparent 23%),
+        radial-gradient(circle at 86% 88%, rgba(212,175,55,.065), transparent 22%),
+        #030303;
+}
+
+/* Deep ambient light */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -25%;
+    z-index: -10;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(212,175,55,.13), transparent 16%),
+        radial-gradient(circle at 80% 30%, rgba(0,212,255,.065), transparent 17%),
+        radial-gradient(circle at 25% 80%, rgba(168,85,247,.07), transparent 18%),
+        radial-gradient(circle at 80% 80%, rgba(212,175,55,.06), transparent 16%);
+    filter: blur(35px);
+    animation: neurixAmbient 18s ease-in-out infinite alternate;
+}
+
+@keyframes neurixAmbient {
+    0%   { transform: translate3d(-2%,-2%,0) scale(1); }
+    50%  { transform: translate3d(3%,2%,0) scale(1.06); }
+    100% { transform: translate3d(-1%,4%,0) scale(1.1); }
+}
+
+/* Perspective grid */
+body::after {
+    content: "";
+    position: fixed;
+    left: -30%;
+    right: -30%;
+    bottom: -18%;
+    height: 58%;
+    z-index: -9;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(212,175,55,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,55,.045) 1px, transparent 1px);
+    background-size: 58px 58px;
+    transform: perspective(700px) rotateX(62deg) translateY(18%);
+    transform-origin: center bottom;
+    -webkit-mask-image: linear-gradient(to top, #000, transparent 88%);
+    mask-image: linear-gradient(to top, #000, transparent 88%);
+    opacity: .65;
+}
+
+/* ---------- 02. SECTION DEPTH ---------- */
+
+section,
+.about,
+.events,
+.schedule,
+.register {
+    position: relative;
+    background: transparent !important;
+}
+
+.about::before,
+.events::before,
+.schedule::before,
+.register::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(212,175,55,.045), transparent 45%);
+}
+
+/* ---------- 03. HERO ---------- */
+
+.hero {
+    perspective: 1400px;
+    transform-style: preserve-3d;
+}
+
+.hero-content {
+    transform-style: preserve-3d;
+}
+
+.hero-title {
+    text-shadow:
+        0 4px 0 rgba(255,255,255,.025),
+        0 18px 55px rgba(212,175,55,.09);
+}
+
+.hero-glow {
+    filter: blur(3px);
+}
+
+/* ---------- 04. PREMIUM BUTTON DEPTH ---------- */
+
+.btn,
+.nav-cta,
+.event-view-btn,
+.event-select-btn {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.btn:hover,
+.nav-cta:hover {
+    transform: translateY(-4px) translateZ(12px);
+}
+
+/* ---------- 05. EVENT GRID ---------- */
+
+.events-grid {
+    perspective: 1500px;
+    transform-style: preserve-3d;
+}
+
+/* ---------- 06. EVENT CARD ---------- */
+
+.event-card {
+    position: relative;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.028) 48%,
+            rgba(212,175,55,.018)
+        ) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.075),
+        inset 0 -1px 0 rgba(0,0,0,.45),
+        0 24px 75px rgba(0,0,0,.42);
+}
+
+/* Moving glass reflection */
+.event-card::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -110%;
+    width: 65%;
+    height: 150%;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.10),
+        transparent
+    );
+    transform: skewX(-22deg) translateZ(45px);
+    opacity: 0;
+    transition:
+        left .9s cubic-bezier(.16,1,.3,1),
+        opacity .3s ease;
+}
+
+.event-card:hover::before {
+    left: 145%;
+    opacity: 1;
+}
+
+/* Card internal lighting */
+.event-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 88% 8%, rgba(212,175,55,.12), transparent 28%),
+        radial-gradient(circle at 5% 95%, rgba(0,212,255,.035), transparent 25%);
+}
+
+/* Card content floats in 3D */
+.event-card-top,
+.event-card-content,
+.event-card-bottom {
+    position: relative;
+    z-index: 3;
+    transform: translateZ(25px);
+    transform-style: preserve-3d;
+}
+
+.event-icon {
+    transform: translateZ(38px);
+    box-shadow: 0 18px 38px rgba(212,175,55,.09);
+}
+
+.event-card:hover .event-icon {
+    transform: translateZ(58px) translateY(-5px) rotate(-3deg) scale(1.07);
+}
+
+/* ---------- 07. SCROLL REVEAL ---------- */
+
+@keyframes neurixCardReveal {
+    0% {
+        opacity: 0;
+        transform:
+            translateY(110px)
+            translateZ(-180px)
+            rotateX(18deg)
+            rotateY(5deg)
+            scale(.82);
+    }
+    55% {
+        opacity: 1;
+        transform:
+            translateY(18px)
+            translateZ(15px)
+            rotateX(-3deg)
+            rotateY(-1deg)
+            scale(.975);
+    }
+    100% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            translateZ(0)
+            rotateX(0)
+            rotateY(0)
+            scale(1);
+    }
+}
+
+@supports (animation-timeline: view()) {
+    .event-card {
+        animation:
+            neurixCardReveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 34%;
+    }
+
+    .about-card,
+    .timeline-card,
+    .register-contact {
+        animation:
+            neurixCardReveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 30%;
+    }
+}
+
+/* ---------- 08. ABOUT CARDS ---------- */
+
+.about-grid {
+    perspective: 1300px;
+}
+
+.about-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.022)
+        ) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 24px 65px rgba(0,0,0,.35);
+}
+
+.about-icon,
+.about-card h3,
+.about-card p {
+    transform: translateZ(24px);
+}
+
+@media (hover:hover) {
+    .about-card:hover {
+        transform:
+            translateY(-10px)
+            translateZ(20px)
+            rotateX(3deg)
+            rotateY(-2deg);
+    }
+}
+
+/* ---------- 09. TIMELINE ---------- */
+
+.timeline {
+    perspective: 1200px;
+}
+
+.timeline-card {
+    transform-style: preserve-3d;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.06),
+            rgba(255,255,255,.02)
+        ) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 22px 60px rgba(0,0,0,.34);
+}
+
+/* ---------- 10. FORM ---------- */
+
+.form-glass {
+    transform-style: preserve-3d;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 28px 80px rgba(0,0,0,.42);
+}
+
+/* ---------- 11. NAVBAR ---------- */
+
+.navbar.scrolled {
+    background: rgba(3,3,3,.74) !important;
+    border-bottom-color: rgba(212,175,55,.10);
+    box-shadow:
+        0 16px 55px rgba(0,0,0,.4),
+        0 1px 0 rgba(212,175,55,.07);
+    backdrop-filter: blur(28px) saturate(140%);
+    -webkit-backdrop-filter: blur(28px) saturate(140%);
+}
+
+/* ---------- 12. MOBILE 768px ---------- */
+
+@media (max-width: 768px) {
+
+    html {
+        font-size: 15px;
+    }
+
+    body {
+        background:
+            radial-gradient(circle at 10% 5%, rgba(212,175,55,.10), transparent 25%),
+            radial-gradient(circle at 90% 28%, rgba(0,212,255,.045), transparent 23%),
+            radial-gradient(circle at 15% 78%, rgba(168,85,247,.045), transparent 25%),
+            #030303;
+    }
+
+    body::before {
+        opacity: .75;
+        filter: blur(38px);
+    }
+
+    body::after {
+        background-size: 42px 42px;
+        opacity: .30;
+    }
+
+    .section-container {
+        width: calc(100% - 28px);
+        max-width: 100%;
+    }
+
+    /* Mobile navigation */
+    .navbar {
+        padding: 10px 0;
+    }
+
+    .nav-container {
+        width: calc(100% - 22px);
+    }
+
+    .nav-logo {
+        gap: 8px;
+    }
+
+    .nav-logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .nav-logo span {
+        font-size: .96rem;
+    }
+
+    .nav-toggle {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(86vw, 340px);
+        height: 100svh;
+        padding: 100px 24px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 8px;
+        background:
+            linear-gradient(
+                145deg,
+                rgba(14,14,14,.97),
+                rgba(4,4,4,.98)
+            );
+        border-left: 1px solid rgba(212,175,55,.14);
+        box-shadow: -25px 0 80px rgba(0,0,0,.55);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        transform: translateX(105%);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            transform .45s cubic-bezier(.16,1,.3,1),
+            opacity .35s ease,
+            visibility .35s ease;
+        z-index: 1001;
+    }
+
+    .nav-menu.active {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-link {
+        width: 100%;
+        padding: 15px 12px;
+        border-radius: 10px;
+        font-size: .95rem;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        background: rgba(212,175,55,.06);
+    }
+
+    .nav-cta {
+        margin-top: 8px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 100svh;
+        padding: 105px 14px 75px;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 15.5vw, 5.2rem);
+        line-height: .94;
+        letter-spacing: -2.5px;
+    }
+
+    .hero-tagline {
+        flex-wrap: wrap;
+        gap: 6px 12px;
+        font-size: .82rem;
+        letter-spacing: 1.2px;
+    }
+
+    .tag-separator {
+        display: none;
+    }
+
+    .hero-meta {
+        gap: 10px 18px;
+        margin-bottom: 28px;
+    }
+
+    .meta-item {
+        font-size: .76rem;
+    }
+
+    .hero-cta {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .hero-cta .btn {
+        width: min(330px, 100%);
+    }
+
+    /* Sections */
+    .about,
+    .events,
+    .schedule,
+    .register {
+        padding: 72px 0;
+    }
+
+    .section-header {
+        margin-bottom: 38px;
+    }
+
+    .section-title {
+        font-size: clamp(1.9rem, 8vw, 2.7rem);
+        line-height: 1.05;
+    }
+
+    .section-subtitle {
+        font-size: .80rem;
+        line-height: 1.7;
+    }
+
+    /* About */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .about-card {
+        padding: 23px;
+    }
+
+    /* Event categories */
+    .events-category {
+        margin-bottom: 48px;
+    }
+
+    .category-header {
+        gap: 11px;
+        margin-bottom: 20px;
+    }
+
+    .category-icon {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+    }
+
+    .category-header h3 {
+        font-size: 1.18rem;
+    }
+
+    .category-header p {
+        font-size: .66rem;
+    }
+
+    /* One card per row */
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        perspective: 1100px;
+    }
+
+    .event-card {
+        min-height: auto;
+        padding: 21px;
+        border-radius: 21px;
+    }
+
+    /* Mobile scroll reveal */
+    @supports (animation-timeline: view()) {
+        .event-card {
+            animation:
+                neurixMobileCardReveal linear both;
+            animation-timeline: view();
+            animation-range: entry 0% cover 28%;
+        }
+    }
+
+    @keyframes neurixMobileCardReveal {
+        0% {
+            opacity: 0;
+            transform:
+                translateY(95px)
+                translateZ(-110px)
+                rotateX(14deg)
+                scale(.86);
+        }
+
+        60% {
+            opacity: 1;
+            transform:
+                translateY(12px)
+                translateZ(10px)
+                rotateX(-2deg)
+                scale(.98);
+        }
+
+        100% {
+            opacity: 1;
+            transform:
+                translateY(0)
+                translateZ(0)
+                rotateX(0)
+                scale(1);
+        }
+    }
+
+    .event-card-top {
+        margin-bottom: 19px;
+    }
+
+    .event-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+        transform: translateZ(30px);
+    }
+
+    .event-title {
+        font-size: 1.13rem;
+    }
+
+    .event-description {
+        font-size: .79rem;
+        line-height: 1.7;
+        -webkit-line-clamp: 4;
+    }
+
+    .event-meta {
+        gap: 5px;
+        padding-top: 17px;
+        flex-wrap: wrap;
+    }
+
+    .event-meta span {
+        padding: 6px 8px;
+        font-size: .56rem;
+    }
+
+    .event-card-bottom {
+        gap: 8px;
+        margin-top: 19px;
+        padding-top: 16px;
+    }
+
+    .event-view-btn,
+    .event-select-btn {
+        min-height: 42px;
+        padding: 8px 7px;
+        font-size: .65rem;
+    }
+
+    /* Timeline */
+    .timeline-line {
+        left: 13px !important;
+        transform: none !important;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+        width: 100%;
+        margin-left: 0;
+        padding: 0 0 30px 38px;
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .timeline-dot,
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 5px;
+        right: auto;
+    }
+
+    .timeline-card {
+        width: 100%;
+        max-width: none;
+    }
+
+    /* Registration */
+    .register-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .register-info {
+        position: static;
+    }
+
+    .form-glass {
+        padding: 22px 17px;
+        border-radius: 22px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    /* Modal */
+    .event-modal {
+        padding: 8px;
+    }
+
+    .event-modal-content {
+        width: 100%;
+        max-height: 94svh;
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .event-modal-images {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .event-modal-images img {
+        height: 210px;
+    }
+
+    .event-modal-info {
+        grid-template-columns: 1fr;
+    }
+
+    /* QR */
+    .qrcode {
+        padding: 10px;
+    }
+
+    .qrcode img {
+        width: min(190px, 75vw);
+        height: min(190px, 75vw);
+    }
+
+    /* Footer */
+    .footer {
+        padding: 52px 0 22px;
+    }
+
+    .footer-content {
+        width: calc(100% - 25px);
+    }
+}
+
+/* ---------- 13. MOBILE 600px ---------- */
+
+@media (max-width: 600px) {
+
+    .nav-container {
+        width: calc(100% - 20px);
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .event-card {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .event-card-bottom {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .event-view-btn,
+    .event-select-btn {
+        min-height: 41px;
+    }
+}
+
+/* ---------- 14. SMALL MOBILE 480px ---------- */
+
+@media (max-width: 480px) {
+
+    html {
+        font-size: 14px;
+    }
+
+    .section-container {
+        width: calc(100% - 22px);
+    }
+
+    .nav-logo img {
+        width: 39px;
+        height: 39px;
+    }
+
+    .nav-logo span {
+        font-size: .91rem;
+    }
+
+    .nav-toggle {
+        width: 41px;
+        height: 41px;
+    }
+
+    .hero {
+        padding:
+            98px 12px 68px;
+    }
+
+    .hero-title {
+        font-size: clamp(2.7rem, 15vw, 4rem);
+        letter-spacing: -2px;
+    }
+
+    .hero-badge {
+        font-size: .64rem;
+        padding: 7px 10px;
+    }
+
+    .hero-tagline {
+        font-size: .76rem;
+    }
+
+    .hero-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+    }
+
+    .meta-item {
+        justify-content: center;
+        font-size: .68rem;
+    }
+
+    .about,
+    .events,
+    .schedule,
+    .register {
+        padding: 62px 0;
+    }
+
+    .section-title {
+        font-size: 1.95rem;
+    }
+
+    .section-subtitle {
+        font-size: .76rem;
+    }
+
+    .about-card {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .category-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+    }
+
+    .category-header h3 {
+        font-size: 1.10rem;
+    }
+
+    .category-header p {
+        font-size: .61rem;
+    }
+
+    .event-card {
+        padding: 18px;
+        border-radius: 19px;
+    }
+
+    .event-icon {
+        width: 49px;
+        height: 49px;
+        font-size: 20px;
+    }
+
+    .event-title {
+        font-size: 1.03rem;
+    }
+
+    .event-description {
+        font-size: .73rem;
+        line-height: 1.65;
+    }
+
+    .event-meta {
+        gap: 4px;
+    }
+
+    .event-meta span {
+        padding: 5px 7px;
+        font-size: .53rem;
+    }
+
+    .event-card-bottom {
+        gap: 7px;
+    }
+
+    .event-view-btn,
+    .event-select-btn {
+        min-height: 39px;
+        padding: 7px 5px;
+        font-size: .59rem;
+    }
+
+    .form-glass {
+        padding: 19px 14px;
+        border-radius: 20px;
+    }
+
+    .event-modal-content {
+        padding: 17px;
+        border-radius: 20px;
+    }
+
+    .event-modal-title {
+        font-size: 1.4rem;
+    }
+
+    .event-modal-images img {
+        height: 175px;
+    }
+}
+
+/* ---------- 15. VERY SMALL 360px ---------- */
+
+@media (max-width: 360px) {
+
+    .section-container {
+        width: calc(100% - 18px);
+    }
+
+    .nav-logo span {
+        font-size: .84rem;
+    }
+
+    .hero-title {
+        font-size: 2.55rem;
+    }
+
+    .hero-tagline {
+        font-size: .70rem;
+    }
+
+    .hero-meta {
+        gap: 7px;
+    }
+
+    .meta-item {
+        font-size: .63rem;
+    }
+
+    .event-card {
+        padding: 16px;
+    }
+
+    .event-card-bottom {
+        grid-template-columns: 1fr;
+    }
+
+    .event-view-btn,
+    .event-select-btn {
+        width: 100%;
+    }
+
+    .event-meta span {
+        font-size: .50rem;
+    }
+}
+
+/* ---------- 16. TOUCH DEVICES ---------- */
+
+@media (hover: none) {
+
+    .event-card:hover {
+        transform: none;
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.075),
+            inset 0 -1px 0 rgba(0,0,0,.45),
+            0 24px 75px rgba(0,0,0,.42);
+    }
+
+    .event-card:hover .event-icon {
+        transform: translateZ(30px);
+    }
+
+    .event-card:hover::before {
+        opacity: 0;
+    }
+
+    .btn:hover,
+    .nav-cta:hover,
+    .event-view-btn:hover,
+    .event-select-btn:hover {
+        transform: none;
+    }
+}
+
+/* ---------- 17. SAFETY / PERFORMANCE ---------- */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+input,
+select,
+textarea,
+button {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+
+    .particle-canvas {
+        opacity: .25;
+    }
+
+    .event-card,
+    .about-card,
+    .timeline-card,
+    .form-glass,
+    .organizer-glass {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+/* ---------- 18. ACCESSIBILITY ---------- */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--gold-primary);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    body::before,
+    body::after,
+    .hero-glow,
+    .event-card,
+    .about-card,
+    .timeline-card,
+    .register-contact,
+    .form-glass {
+        animation: none !important;
+    }
+
+    .event-card,
+    .about-card,
+    .timeline-card {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
