@@ -110,7 +110,7 @@ const EVENTS = {
 
         {
             id: "ultimate-xi",
-            name: "ULTIMATE XI",
+            name: "ULTIMATE XI (E-Football)",
             description:
                 "Build your ultimate squad, master your tactics and battle your way to victory.",
             category: "eSports",
@@ -121,7 +121,7 @@ const EVENTS = {
 
         {
             id: "final-stand",
-            name: "FINAL STAND",
+            name: "FINAL STAND (Free Fire)",
             description:
                 "Survive the battlefield, outplay your opponents and become the last squad standing.",
             category: "eSports",
