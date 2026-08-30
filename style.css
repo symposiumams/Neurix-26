@@ -5612,3 +5612,454 @@ textarea:focus-visible {
         transform: none !important;
     }
 }
+
+
+
+
+/* =========================================================
+   NEURIX'26 — MOBILE GOLD STRIP + FOOTER VISIBILITY FIX
+   Paste at the VERY END of CSS
+   ========================================================= */
+
+/* ---------- 01. REMOVE GOLD SIDE SCROLLBAR ---------- */
+
+html {
+    overflow-x: clip !important;
+}
+
+body {
+    overflow-x: clip !important;
+}
+
+/* Make scrollbar dark instead of gold */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #030303 !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,.18) !important;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,.30) !important;
+}
+
+
+/* ---------- 02. KEEP 3D BACKGROUND INSIDE SCREEN ---------- */
+
+body::after {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden;
+}
+
+
+/* ---------- 03. PREMIUM FOOTER ---------- */
+
+.footer {
+    position: relative;
+    isolation: isolate;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(212,175,55,.10),
+            transparent 32%
+        ),
+        linear-gradient(
+            180deg,
+            #111111 0%,
+            #0b0b0b 45%,
+            #070707 100%
+        ) !important;
+
+    border-top:
+        1px solid rgba(212,175,55,.22) !important;
+
+    box-shadow:
+        0 -20px 70px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.035);
+
+    overflow: hidden;
+}
+
+
+/* Footer top golden light */
+
+.footer::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: min(520px, 90vw);
+    height: 2px;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(212,175,55,.85),
+            transparent
+        );
+
+    box-shadow:
+        0 0 25px rgba(212,175,55,.25);
+
+    pointer-events: none;
+}
+
+
+/* Footer ambient glow */
+
+.footer::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -140px;
+
+    width: 500px;
+    height: 250px;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(212,175,55,.075),
+            transparent 70%
+        );
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* ---------- 04. FOOTER CONTENT VISIBILITY ---------- */
+
+.footer-content {
+    position: relative;
+    z-index: 3;
+
+    color: #ffffff;
+}
+
+
+/* Main footer title */
+
+.footer-logo {
+    color: #f4dc7b !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a98218,
+            #d4af37,
+            #f4dc7b,
+            #d4af37
+        ) !important;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 25px rgba(5, 5, 4, 0.12);
+}
+
+
+/* Tagline */
+
+.footer-tagline {
+    color: rgba(255,255,255,.62) !important;
+
+    letter-spacing: 3px;
+}
+
+
+/* Divider */
+
+.footer-divider {
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #d4af37,
+            transparent
+        ) !important;
+
+    box-shadow:
+        0 0 18px rgba(212,175,55,.25);
+}
+
+
+/* Footer normal text */
+
+.footer-bottom p {
+    color: rgba(255,255,255,.68) !important;
+}
+
+
+/* Copyright */
+
+.footer-copyright {
+    border-top:
+        1px solid rgba(255,255,255,.10) !important;
+}
+
+.footer-copyright p {
+    color: rgba(255,255,255,.58) !important;
+}
+
+
+/* ---------- 05. MOBILE FOOTER ---------- */
+
+@media (max-width: 600px) {
+
+    .footer {
+        padding:
+            60px 0 26px !important;
+
+        background:
+            radial-gradient(
+                circle at 50% 0%,
+                rgba(212,175,55,.095),
+                transparent 38%
+            ),
+            linear-gradient(
+                180deg,
+                #121212,
+                #0a0a0a
+            ) !important;
+    }
+
+    .footer-content {
+        width:
+            calc(100% - 30px) !important;
+
+        max-width: 500px;
+
+        margin: 0 auto;
+    }
+
+    .footer-logo {
+        font-size: 1.85rem;
+    }
+
+    .footer-tagline {
+        font-size: .68rem;
+
+        color:
+            rgba(255,255,255,.58) !important;
+    }
+
+    .footer-bottom p {
+        font-size: .72rem;
+
+        line-height: 1.7;
+
+        color:
+            rgba(255,255,255,.65) !important;
+    }
+
+    .footer-copyright {
+        margin-top: 22px;
+        padding-top: 18px;
+    }
+}
+
+
+/* ---------- 06. VERY SMALL MOBILE ---------- */
+
+@media (max-width: 360px) {
+
+    .footer {
+        padding:
+            52px 0 22px !important;
+    }
+
+    .footer-logo {
+        font-size: 1.65rem;
+    }
+
+    .footer-tagline {
+        font-size: .61rem;
+        letter-spacing: 2px;
+    }
+
+    .footer-bottom p {
+        font-size: .68rem;
+    }
+}
+
+
+/* =========================================================
+   FINAL FOOTER VISIBILITY FIX
+   ========================================================= */
+
+.footer {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    animation: none !important;
+    animation-timeline: none !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #151515 0%,
+            #0d0d0d 55%,
+            #080808 100%
+        ) !important;
+
+    border-top: 1px solid rgba(212,175,55,.35) !important;
+}
+
+
+/* NEURIX'26 — FORCE CLEAR VISIBILITY */
+
+.footer-logo {
+    display: block !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    color: #f5d76e !important;
+
+    background: none !important;
+
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+
+    -webkit-text-fill-color: #f5d76e !important;
+
+    font-family: var(--font-display) !important;
+
+    font-size: 2rem !important;
+    font-weight: 900 !important;
+
+    line-height: 1.2 !important;
+
+    text-shadow:
+        0 0 8px rgba(212,175,55,.35),
+        0 0 25px rgba(212,175,55,.15) !important;
+}
+
+
+/* Tagline */
+
+.footer-tagline {
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    color: #bdbdbd !important;
+
+    text-shadow:
+        0 1px 8px rgba(0,0,0,.8);
+
+}
+
+
+/* College / footer text */
+
+.footer-bottom,
+.footer-bottom p {
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    color: #b5b5b5 !important;
+}
+
+
+/* Copyright */
+
+.footer-copyright,
+.footer-copyright p {
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    color: #999999 !important;
+}
+
+
+/* Divider */
+
+.footer-divider {
+    opacity: 1 !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #d4af37,
+            transparent
+        ) !important;
+
+    box-shadow:
+        0 0 12px rgba(212,175,55,.3);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .footer {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+
+        padding:
+            55px 0 25px !important;
+    }
+
+    .footer-logo {
+        font-size: 1.9rem !important;
+
+        color: #f7dc72 !important;
+
+        -webkit-text-fill-color: #f7dc72 !important;
+    }
+
+    .footer-tagline {
+        color: #c4c4c4 !important;
+        font-size: .68rem !important;
+    }
+
+    .footer-bottom p {
+        color: #bcbcbc !important;
+        font-size: .72rem !important;
+    }
+
+    .footer-copyright p {
+        color: #969696 !important;
+    }
+}
+
+
+/* VERY SMALL MOBILE */
+
+@media (max-width: 360px) {
+
+    .footer-logo {
+        font-size: 1.7rem !important;
+    }
+
+    .footer-tagline {
+        font-size: .62rem !important;
+    }
+}
