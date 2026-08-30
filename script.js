@@ -184,22 +184,20 @@ const EVENTS = {
    ========================================================= */
 
 const EVENT_PAIRS = {
+    "prompt-battle": "think-link",
+    "think-link": "prompt-battle",
 
-    "prompt-battle": "chase-clue",
-    "chase-clue": "prompt-battle",
+    "debug-arena": "paper-presentation",
+    "paper-presentation": "debug-arena",
 
-    "debug-arena": "bgm-blitz",
-    "bgm-blitz": "debug-arena",
+    "canvas-clash": "chase-clue",
+    "chase-clue": "canvas-clash",
 
-    "paper-presentation": "think-link",
-    "think-link": "paper-presentation",
-
-    "canvas-clash": "web-craft",
-    "web-craft": "canvas-clash",
+    "web-craft": "bgm-blitz",
+    "bgm-blitz": "web-craft",
 
     "ultimate-xi": "final-stand",
     "final-stand": "ultimate-xi"
-
 };
 
 
