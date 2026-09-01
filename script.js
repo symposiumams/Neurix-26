@@ -196,7 +196,7 @@ const EVENT_PAIRS = {
     "web-craft": "bgm-blitz",
     "bgm-blitz": "web-craft",
 
-    "ultimate-xi": "final-stand",1
+    "ultimate-xi": "final-stand",
     "final-stand": "ultimate-xi",
 
     "frames-of-ams": "corporate-walk",
