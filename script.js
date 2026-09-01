@@ -196,10 +196,12 @@ const EVENT_PAIRS = {
     "web-craft": "bgm-blitz",
     "bgm-blitz": "web-craft",
 
-    "ultimate-xi": "final-stand",
-    "final-stand": "ultimate-xi"
-};
+    "ultimate-xi": "final-stand",1
+    "final-stand": "ultimate-xi",
 
+    "frames-of-ams": "corporate-walk",
+    "corporate-walk": "frames-of-ams"
+};
 
 /* =========================================================
    04. STATE
