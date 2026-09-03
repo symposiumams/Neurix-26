@@ -1,21 +1,9 @@
 /* =========================================================
-   NEURIX'26 — COMPLETE FRONTEND JS
-   VERSION: CASE-SAFE EVENT SYSTEM
-
-   FEATURES:
-   - Automatic event cards
-   - Event selection
-   - Maximum 5 events
-   - Event pair restrictions
-   - Case-safe event names
-   - Event details modal
-   - Form validation
-   - Payment screenshot Base64 upload
-   - Google Apps Script submission
-   - Mobile navigation
-   - Scroll navigation
-   - Particles
+   NEURIX'26 — COMPLETE FRONTEND JAVASCRIPT
+   Department + Year Integrated
    ========================================================= */
+
+"use strict";
 
 
 /* =========================================================
@@ -23,6 +11,7 @@
    ========================================================= */
 
 const MAX_EVENTS = 5;
+
 const REGISTRATION_FEE = 150;
 
 const GOOGLE_SCRIPT_URL =
@@ -110,7 +99,7 @@ const EVENTS = {
 
         {
             id: "ultimate-xi",
-            name: "ULTIMATE XI ",
+            name: "ULTIMATE XI",
             description:
                 "(E-Football) Build your ultimate squad, master your tactics and battle your way to victory.",
             category: "eSports",
@@ -121,7 +110,7 @@ const EVENTS = {
 
         {
             id: "final-stand",
-            name: "FINAL STAND ",
+            name: "FINAL STAND",
             description:
                 "(Free Fire) Survive the battlefield, outplay your opponents and become the last squad standing.",
             category: "eSports",
@@ -184,6 +173,7 @@ const EVENTS = {
    ========================================================= */
 
 const EVENT_PAIRS = {
+
     "prompt-battle": "think-link",
     "think-link": "prompt-battle",
 
@@ -199,9 +189,11 @@ const EVENT_PAIRS = {
     "ultimate-xi": "final-stand",
     "final-stand": "ultimate-xi",
 
-    "frames-of-ams": "corporate-walk",
-    "corporate-walk": "frames-of-ams"
+    "frames-ams": "corporate-walk",
+    "corporate-walk": "frames-ams"
+
 };
+
 
 /* =========================================================
    04. STATE
@@ -225,7 +217,7 @@ function getAllEvents() {
 
 
 /* =========================================================
-   06. FIND EVENT BY ID
+   06. GET EVENT
    ========================================================= */
 
 function getEventById(id) {
@@ -239,20 +231,6 @@ function getEventById(id) {
 
 /* =========================================================
    07. NORMALIZE EVENT NAME
-   =========================================================
-   
-   This function makes frontend event names consistent.
-
-   Example:
-
-   "Prompt Battle"
-   "prompt battle"
-   "PROMPT BATTLE"
-
-   All are converted to:
-
-   "Prompt Battle"
-
    ========================================================= */
 
 function normalizeEventName(name) {
@@ -268,28 +246,54 @@ function normalizeEventName(name) {
             .toLowerCase();
 
     const event =
-        getAllEvents().find(
-            item =>
-                item.name
-                    .trim()
-                    .replace(/\s+/g, " ")
-                    .toLowerCase() === cleanName
+        getAllEvents().find(item =>
+            item.name
+                .trim()
+                .replace(/\s+/g, " ")
+                .toLowerCase() === cleanName
         );
 
     return event
-        ? event.name
+        ? event.name.trim()
         : String(name).trim();
 
 }
 
 
 /* =========================================================
-   08. DOM READY
+   08. ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   09. ESCAPE ATTRIBUTE
+   ========================================================= */
+
+function escapeAttribute(value) {
+
+    return escapeHTML(value);
+
+}
+
+
+/* =========================================================
+   10. DOM READY
    ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
-    () => {
+    function () {
 
         console.log(
             "NEURIX'26 → Initializing..."
@@ -314,7 +318,7 @@ document.addEventListener(
         updateEventUI();
 
         console.log(
-            "NEURIX'26 → Initialization complete"
+            "NEURIX'26 → Ready"
         );
 
     }
@@ -322,7 +326,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   09. LOADER
+   11. LOADER
    ========================================================= */
 
 function initializeLoader() {
@@ -330,8 +334,9 @@ function initializeLoader() {
     const loader =
         document.querySelector(".loader");
 
-    if (!loader) return;
-
+    if (!loader) {
+        return;
+    }
 
     function hideLoader() {
 
@@ -343,10 +348,9 @@ function initializeLoader() {
 
     }
 
-
     window.addEventListener(
         "load",
-        () => {
+        function () {
 
             setTimeout(
                 hideLoader,
@@ -359,7 +363,6 @@ function initializeLoader() {
         }
     );
 
-
     setTimeout(
         hideLoader,
         3000
@@ -369,7 +372,7 @@ function initializeLoader() {
 
 
 /* =========================================================
-   10. NAVIGATION
+   12. NAVIGATION
    ========================================================= */
 
 function initializeNavigation() {
@@ -388,7 +391,7 @@ function initializeNavigation() {
 
         toggle.addEventListener(
             "click",
-            () => {
+            function () {
 
                 toggle.classList.toggle(
                     "active"
@@ -404,11 +407,11 @@ function initializeNavigation() {
 
         menu
             .querySelectorAll(".nav-link")
-            .forEach(link => {
+            .forEach(function (link) {
 
                 link.addEventListener(
                     "click",
-                    () => {
+                    function () {
 
                         toggle.classList.remove(
                             "active"
@@ -428,9 +431,11 @@ function initializeNavigation() {
 
     window.addEventListener(
         "scroll",
-        () => {
+        function () {
 
-            if (!navbar) return;
+            if (!navbar) {
+                return;
+            }
 
             navbar.classList.toggle(
                 "scrolled",
@@ -447,7 +452,7 @@ function initializeNavigation() {
 
 
 /* =========================================================
-   11. GENERATE EVENT CARDS
+   13. GENERATE EVENT CARDS
    ========================================================= */
 
 function generateEventCards() {
@@ -486,7 +491,7 @@ function generateEventCards() {
 
 
 /* =========================================================
-   12. CREATE EVENT CARD
+   14. CREATE EVENT CARD
    ========================================================= */
 
 function createEventCard(event) {
@@ -584,14 +589,14 @@ function createEventCard(event) {
 
 
 /* =========================================================
-   13. INITIALIZE SELECTION
+   15. INITIALIZE SELECTION
    ========================================================= */
 
 function initializeSelection() {
 
     document.addEventListener(
         "click",
-        event => {
+        function (event) {
 
             const selectButton =
                 event.target.closest(
@@ -602,8 +607,6 @@ function initializeSelection() {
             if (selectButton) {
 
                 event.preventDefault();
-
-                event.stopPropagation();
 
                 const id =
                     selectButton.dataset.selectEvent;
@@ -625,11 +628,29 @@ function initializeSelection() {
 
                 event.preventDefault();
 
-                event.stopPropagation();
-
                 openEventModal(
                     viewButton.dataset.viewEvent
                 );
+
+                return;
+
+            }
+
+
+            const removeButton =
+                event.target.closest(
+                    "[data-remove-event]"
+                );
+
+
+            if (removeButton) {
+
+                event.preventDefault();
+
+                const id =
+                    removeButton.dataset.removeEvent;
+
+                toggleEventSelection(id);
 
             }
 
@@ -640,7 +661,7 @@ function initializeSelection() {
 
 
 /* =========================================================
-   14. TOGGLE EVENT SELECTION
+   16. TOGGLE EVENT
    ========================================================= */
 
 function toggleEventSelection(id) {
@@ -648,12 +669,12 @@ function toggleEventSelection(id) {
     const event =
         getEventById(id);
 
-    if (!event) return;
+    if (!event) {
+        return;
+    }
 
 
-    /* =====================================================
-       REMOVE EVENT
-       ===================================================== */
+    /* REMOVE */
 
     if (
         selectedEvents.includes(id)
@@ -672,9 +693,7 @@ function toggleEventSelection(id) {
     }
 
 
-    /* =====================================================
-       MAXIMUM 5
-       ===================================================== */
+    /* MAXIMUM */
 
     if (
         selectedEvents.length >=
@@ -690,13 +709,10 @@ function toggleEventSelection(id) {
     }
 
 
-    /* =====================================================
-       CHECK PAIR
-       ===================================================== */
+    /* PAIR */
 
     const pair =
         EVENT_PAIRS[id];
-
 
     if (
         pair &&
@@ -715,10 +731,6 @@ function toggleEventSelection(id) {
     }
 
 
-    /* =====================================================
-       ADD EVENT
-       ===================================================== */
-
     selectedEvents.push(id);
 
     updateEventUI();
@@ -727,14 +739,14 @@ function toggleEventSelection(id) {
 
 
 /* =========================================================
-   15. UPDATE EVENT UI
+   17. UPDATE EVENT UI
    ========================================================= */
 
 function updateEventUI() {
 
     document
         .querySelectorAll(".event-card")
-        .forEach(card => {
+        .forEach(function (card) {
 
             const id =
                 card.dataset.event;
@@ -755,7 +767,6 @@ function updateEventUI() {
                 selected
             );
 
-
             card.classList.toggle(
                 "disabled",
                 Boolean(
@@ -765,15 +776,14 @@ function updateEventUI() {
             );
 
 
-            const selectButton =
+            const button =
                 card.querySelector(
                     ".event-select-btn"
                 );
 
+            if (button) {
 
-            if (selectButton) {
-
-                selectButton.classList.toggle(
+                button.classList.toggle(
                     "active",
                     selected
                 );
@@ -793,7 +803,7 @@ function updateEventUI() {
 
 
 /* =========================================================
-   16. COUNTER
+   18. COUNTER
    ========================================================= */
 
 function updateCounter() {
@@ -803,8 +813,9 @@ function updateCounter() {
             ".counter-value"
         );
 
-    if (!counter) return;
-
+    if (!counter) {
+        return;
+    }
 
     counter.textContent =
         `${selectedEvents.length} / ${MAX_EVENTS}`;
@@ -813,7 +824,7 @@ function updateCounter() {
 
 
 /* =========================================================
-   17. FORM EVENT LIST
+   19. FORM EVENT LIST
    ========================================================= */
 
 function updateFormEventList() {
@@ -823,7 +834,9 @@ function updateFormEventList() {
             ".form-event-list"
         );
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
 
     if (
@@ -843,7 +856,7 @@ function updateFormEventList() {
 
     container.innerHTML =
         selectedEvents
-            .map(id => {
+            .map(function (id) {
 
                 const event =
                     getEventById(id);
@@ -873,50 +886,34 @@ function updateFormEventList() {
             })
             .join("");
 
-
-    container
-        .querySelectorAll(
-            "[data-remove-event]"
-        )
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    toggleEventSelection(
-                        button.dataset.removeEvent
-                    );
-
-                }
-            );
-
-        });
-
 }
 
 
 /* =========================================================
-   18. PAYMENT TOTAL
+   20. PAYMENT TOTAL
    ========================================================= */
 
 function updatePaymentTotal() {
 
-    const total =
-        document.querySelector(
+    const totalElements =
+        document.querySelectorAll(
             ".payment-total span:last-child"
         );
 
-    if (!total) return;
+    totalElements.forEach(
+        function (element) {
 
-    total.textContent =
-        `₹${REGISTRATION_FEE}`;
+            element.textContent =
+                `₹${REGISTRATION_FEE}`;
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-   19. EVENT WARNING
+   21. EVENT WARNING
    ========================================================= */
 
 function showEventWarning(message) {
@@ -951,7 +948,7 @@ function showEventWarning(message) {
 
     warning._timer =
         setTimeout(
-            () => {
+            function () {
 
                 warning.classList.remove(
                     "visible"
@@ -965,7 +962,7 @@ function showEventWarning(message) {
 
 
 /* =========================================================
-   20. EVENT MODAL
+   22. EVENT MODAL
    ========================================================= */
 
 function initializeEventModal() {
@@ -975,14 +972,15 @@ function initializeEventModal() {
             ".event-modal"
         );
 
-    if (!modal) return;
+    if (!modal) {
+        return;
+    }
 
 
     const closeButton =
         modal.querySelector(
             ".event-modal-close"
         );
-
 
     const backdrop =
         modal.querySelector(
@@ -1012,7 +1010,7 @@ function initializeEventModal() {
 
     document.addEventListener(
         "keydown",
-        event => {
+        function (event) {
 
             if (
                 event.key === "Escape"
@@ -1029,7 +1027,7 @@ function initializeEventModal() {
 
 
 /* =========================================================
-   21. OPEN EVENT MODAL
+   23. OPEN EVENT MODAL
    ========================================================= */
 
 function openEventModal(id) {
@@ -1042,7 +1040,9 @@ function openEventModal(id) {
             ".event-modal"
         );
 
-    if (!event || !modal) return;
+    if (!event || !modal) {
+        return;
+    }
 
 
     const category =
@@ -1050,12 +1050,10 @@ function openEventModal(id) {
             "#modalCategory"
         );
 
-
     const title =
         modal.querySelector(
             "#modalTitle"
         );
-
 
     const description =
         modal.querySelector(
@@ -1094,7 +1092,7 @@ function openEventModal(id) {
 
 
     images.forEach(
-        image => {
+        function (image) {
 
             image.src =
                 "https://placehold.co/900x550/111111/D4AF37?text=" +
@@ -1113,12 +1111,10 @@ function openEventModal(id) {
         "active"
     );
 
-
     modal.setAttribute(
         "aria-hidden",
         "false"
     );
-
 
     document.body.classList.add(
         "modal-open"
@@ -1128,7 +1124,7 @@ function openEventModal(id) {
 
 
 /* =========================================================
-   22. CLOSE EVENT MODAL
+   24. CLOSE EVENT MODAL
    ========================================================= */
 
 function closeEventModal() {
@@ -1138,19 +1134,19 @@ function closeEventModal() {
             ".event-modal"
         );
 
-    if (!modal) return;
+    if (!modal) {
+        return;
+    }
 
 
     modal.classList.remove(
         "active"
     );
 
-
     modal.setAttribute(
         "aria-hidden",
         "true"
     );
-
 
     document.body.classList.remove(
         "modal-open"
@@ -1160,7 +1156,7 @@ function closeEventModal() {
 
 
 /* =========================================================
-   23. FORM INITIALIZATION
+   25. FORM INITIALIZATION
    ========================================================= */
 
 function initializeForm() {
@@ -1170,7 +1166,9 @@ function initializeForm() {
             "#registrationForm"
         );
 
-    if (!form) return;
+    if (!form) {
+        return;
+    }
 
 
     form.addEventListener(
@@ -1182,7 +1180,7 @@ function initializeForm() {
 
 
 /* =========================================================
-   24. SUBMIT REGISTRATION
+   26. FORM SUBMISSION
    ========================================================= */
 
 async function handleRegistrationSubmit(event) {
@@ -1194,9 +1192,7 @@ async function handleRegistrationSubmit(event) {
         event.target;
 
 
-    /* =====================================================
-       EVENT VALIDATION
-       ===================================================== */
+    /* EVENTS */
 
     if (
         selectedEvents.length === 0
@@ -1218,9 +1214,7 @@ async function handleRegistrationSubmit(event) {
     }
 
 
-    /* =====================================================
-       URL VALIDATION
-       ===================================================== */
+    /* URL */
 
     if (
         !GOOGLE_SCRIPT_URL ||
@@ -1239,9 +1233,7 @@ async function handleRegistrationSubmit(event) {
     }
 
 
-    /* =====================================================
-       HTML VALIDATION
-       ===================================================== */
+    /* HTML VALIDATION */
 
     if (
         !form.checkValidity()
@@ -1258,10 +1250,6 @@ async function handleRegistrationSubmit(event) {
 
     }
 
-
-    /* =====================================================
-       SUBMIT BUTTON
-       ===================================================== */
 
     const submitButton =
         form.querySelector(
@@ -1283,12 +1271,78 @@ async function handleRegistrationSubmit(event) {
 
     try {
 
-        /* =================================================
-           FORM DATA
-           ================================================= */
-
         const formData =
             new FormData(form);
+
+
+        /* =================================================
+           NAME
+           ================================================= */
+
+        const name =
+            String(
+                formData.get("name") || ""
+            ).trim();
+
+
+        /* =================================================
+           COLLEGE
+           ================================================= */
+
+        const college =
+            String(
+                formData.get("college") || ""
+            ).trim();
+
+
+        /* =================================================
+           DEPARTMENT
+           ================================================= */
+
+        const department =
+            String(
+                formData.get("department") || ""
+            ).trim();
+
+
+        /* =================================================
+           YEAR
+           ================================================= */
+
+        const year =
+            String(
+                formData.get("year") || ""
+            ).trim();
+
+
+        /* =================================================
+           PHONE
+           ================================================= */
+
+        const phone =
+            String(
+                formData.get("phone") || ""
+            ).trim();
+
+
+        /* =================================================
+           EMAIL
+           ================================================= */
+
+        const email =
+            String(
+                formData.get("email") || ""
+            ).trim();
+
+
+        /* =================================================
+           FOOD
+           ================================================= */
+
+        const food =
+            String(
+                formData.get("food") || ""
+            ).trim();
 
 
         /* =================================================
@@ -1314,16 +1368,15 @@ async function handleRegistrationSubmit(event) {
         }
 
 
-        /* =================================================
-           FILE SIZE VALIDATION
-           ================================================= */
+        /* FILE SIZE */
 
         const MAX_FILE_SIZE =
             5 * 1024 * 1024;
 
 
         if (
-            file.size > MAX_FILE_SIZE
+            file.size >
+            MAX_FILE_SIZE
         ) {
 
             throw new Error(
@@ -1333,9 +1386,7 @@ async function handleRegistrationSubmit(event) {
         }
 
 
-        /* =================================================
-           FILE TYPE VALIDATION
-           ================================================= */
+        /* FILE TYPE */
 
         const allowedTypes = [
             "image/jpeg",
@@ -1358,9 +1409,7 @@ async function handleRegistrationSubmit(event) {
         }
 
 
-        /* =================================================
-           BASE64
-           ================================================= */
+        /* BASE64 */
 
         const base64 =
             await fileToBase64(file);
@@ -1376,53 +1425,53 @@ async function handleRegistrationSubmit(event) {
 
         params.append(
             "name",
-            formData.get("name") || ""
+            name
         );
 
 
         params.append(
             "college",
-            formData.get("college") || ""
+            college
         );
 
 
         params.append(
             "department",
-            formData.get("department") || "CSBS"
+            department
         );
 
 
         params.append(
             "year",
-            formData.get("year") || "Student"
+            year
         );
 
 
         params.append(
             "phone",
-            formData.get("phone") || ""
+            phone
         );
 
 
         params.append(
             "email",
-            formData.get("email") || ""
+            email
         );
 
 
         params.append(
             "food",
-            formData.get("food") || ""
+            food
         );
 
 
         /* =================================================
-           EVENT NAMES
+           EVENTS
            ================================================= */
 
         const selectedEventNames =
             selectedEvents
-                .map(id => {
+                .map(function (id) {
 
                     const eventData =
                         getEventById(id);
@@ -1437,19 +1486,6 @@ async function handleRegistrationSubmit(event) {
                 .filter(Boolean);
 
 
-        /* =================================================
-           IMPORTANT
-
-           Send exact normalized event names.
-
-           Example:
-
-           Prompt Battle
-           Debug Arena
-           ULTIMATE XI
-
-           ================================================= */
-
         params.append(
             "events",
             selectedEventNames.join(",")
@@ -1457,7 +1493,7 @@ async function handleRegistrationSubmit(event) {
 
 
         /* =================================================
-           PAYMENT DATA
+           PAYMENT
            ================================================= */
 
         params.append(
@@ -1474,7 +1510,8 @@ async function handleRegistrationSubmit(event) {
 
         params.append(
             "paymentScreenshotType",
-            file.type || "image/jpeg"
+            file.type ||
+            "image/jpeg"
         );
 
 
@@ -1483,13 +1520,33 @@ async function handleRegistrationSubmit(event) {
         );
 
         console.log(
-            "Selected events:",
+            "Name:",
+            name
+        );
+
+        console.log(
+            "College:",
+            college
+        );
+
+        console.log(
+            "Department:",
+            department
+        );
+
+        console.log(
+            "Year:",
+            year
+        );
+
+        console.log(
+            "Events:",
             selectedEventNames
         );
 
 
         /* =================================================
-           SEND TO GOOGLE APPS SCRIPT
+           SEND
            ================================================= */
 
         const response =
@@ -1511,25 +1568,15 @@ async function handleRegistrationSubmit(event) {
             );
 
 
-        console.log(
-            "Response status:",
-            response.status
-        );
-
-
         const responseText =
             await response.text();
 
 
         console.log(
-            "Google Apps Script response:",
+            "Apps Script response:",
             responseText
         );
 
-
-        /* =================================================
-           PARSE RESPONSE
-           ================================================= */
 
         let result;
 
@@ -1541,7 +1588,7 @@ async function handleRegistrationSubmit(event) {
                     responseText
                 );
 
-        } catch {
+        } catch (error) {
 
             throw new Error(
                 "Google Apps Script returned an invalid response."
@@ -1549,10 +1596,6 @@ async function handleRegistrationSubmit(event) {
 
         }
 
-
-        /* =================================================
-           BACKEND ERROR
-           ================================================= */
 
         if (
             !result.success
@@ -1576,9 +1619,7 @@ async function handleRegistrationSubmit(event) {
         );
 
 
-        /* =================================================
-           RESET FORM
-           ================================================= */
+        /* RESET */
 
         form.reset();
 
@@ -1588,7 +1629,7 @@ async function handleRegistrationSubmit(event) {
 
 
         console.log(
-            "Registration completed:",
+            "Registration completed.",
             result
         );
 
@@ -1627,45 +1668,46 @@ async function handleRegistrationSubmit(event) {
 
 
 /* =========================================================
-   25. FILE → BASE64
+   27. FILE → BASE64
    ========================================================= */
 
 function fileToBase64(file) {
 
     return new Promise(
-        (resolve, reject) => {
+        function (resolve, reject) {
 
             const reader =
                 new FileReader();
 
 
-            reader.onload = () => {
+            reader.onload =
+                function () {
 
-                const result =
-                    String(
-                        reader.result
+                    const result =
+                        String(
+                            reader.result
+                        );
+
+
+                    const base64 =
+                        result.includes(
+                            "base64,"
+                        )
+                            ? result.split(
+                                "base64,"
+                            )[1]
+                            : result;
+
+
+                    resolve(
+                        base64
                     );
 
-
-                const base64 =
-                    result.includes(
-                        "base64,"
-                    )
-                        ? result.split(
-                            "base64,"
-                        )[1]
-                        : result;
-
-
-                resolve(
-                    base64
-                );
-
-            };
+                };
 
 
             reader.onerror =
-                () => {
+                function () {
 
                     reject(
                         new Error(
@@ -1687,7 +1729,7 @@ function fileToBase64(file) {
 
 
 /* =========================================================
-   26. FORM MESSAGE
+   28. FORM MESSAGE
    ========================================================= */
 
 function showFormMessage(
@@ -1731,7 +1773,7 @@ function showFormMessage(
 
 
 /* =========================================================
-   27. SCROLL NAVIGATION
+   29. SCROLL NAVIGATION
    ========================================================= */
 
 function initializeScroll() {
@@ -1740,7 +1782,6 @@ function initializeScroll() {
         document.querySelectorAll(
             "section[id]"
         );
-
 
     const links =
         document.querySelectorAll(
@@ -1751,19 +1792,23 @@ function initializeScroll() {
     if (
         !sections.length ||
         !links.length
-    ) return;
+    ) {
+        return;
+    }
 
 
     const observer =
         new IntersectionObserver(
-            entries => {
+            function (entries) {
 
                 entries.forEach(
-                    entry => {
+                    function (entry) {
 
                         if (
                             !entry.isIntersecting
-                        ) return;
+                        ) {
+                            return;
+                        }
 
 
                         const id =
@@ -1771,7 +1816,7 @@ function initializeScroll() {
 
 
                         links.forEach(
-                            link => {
+                            function (link) {
 
                                 link.classList.toggle(
                                     "active",
@@ -1795,17 +1840,20 @@ function initializeScroll() {
 
 
     sections.forEach(
-        section =>
+        function (section) {
+
             observer.observe(
                 section
-            )
+            );
+
+        }
     );
 
 }
 
 
 /* =========================================================
-   28. PARTICLES
+   30. PARTICLES
    ========================================================= */
 
 function initializeParticles() {
@@ -1815,8 +1863,9 @@ function initializeParticles() {
             ".particle-canvas"
         );
 
-
-    if (!canvas) return;
+    if (!canvas) {
+        return;
+    }
 
 
     const ctx =
@@ -1824,14 +1873,16 @@ function initializeParticles() {
             "2d"
         );
 
-
-    if (!ctx) return;
+    if (!ctx) {
+        return;
+    }
 
 
     let width = 0;
+
     let height = 0;
+
     let particles = [];
-    let animationFrame;
 
 
     function resize() {
@@ -1846,7 +1897,6 @@ function initializeParticles() {
         width =
             window.innerWidth;
 
-
         height =
             window.innerHeight;
 
@@ -1854,14 +1904,12 @@ function initializeParticles() {
         canvas.width =
             width * ratio;
 
-
         canvas.height =
             height * ratio;
 
 
         canvas.style.width =
             `${width}px`;
-
 
         canvas.style.height =
             `${height}px`;
@@ -1895,32 +1943,36 @@ function initializeParticles() {
                 {
                     length: count
                 },
-                () => ({
+                function () {
 
-                    x:
-                        Math.random() *
-                        width,
+                    return {
 
-                    y:
-                        Math.random() *
-                        height,
+                        x:
+                            Math.random() *
+                            width,
 
-                    size:
-                        Math.random() *
-                        1.5 +
-                        0.5,
+                        y:
+                            Math.random() *
+                            height,
 
-                    speed:
-                        Math.random() *
-                        0.25 +
-                        0.05,
+                        size:
+                            Math.random() *
+                            1.5 +
+                            0.5,
 
-                    opacity:
-                        Math.random() *
-                        0.4 +
-                        0.1
+                        speed:
+                            Math.random() *
+                            0.25 +
+                            0.05,
 
-                })
+                        opacity:
+                            Math.random() *
+                            0.4 +
+                            0.1
+
+                    };
+
+                }
             );
 
     }
@@ -1937,7 +1989,7 @@ function initializeParticles() {
 
 
         particles.forEach(
-            particle => {
+            function (particle) {
 
                 particle.y -=
                     particle.speed;
@@ -1975,10 +2027,9 @@ function initializeParticles() {
         );
 
 
-        animationFrame =
-            requestAnimationFrame(
-                animate
-            );
+        requestAnimationFrame(
+            animate
+        );
 
     }
 
@@ -1996,109 +2047,4 @@ function initializeParticles() {
 
     animate();
 
-
-    document.addEventListener(
-        "visibilitychange",
-        () => {
-
-            if (
-                document.hidden
-            ) {
-
-                cancelAnimationFrame(
-                    animationFrame
-                );
-
-            } else {
-
-                animate();
-
-            }
-
-        }
-    );
-
 }
-
-
-/* =========================================================
-   29. ESCAPE HTML
-   ========================================================= */
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =========================================================
-   30. ESCAPE ATTRIBUTE
-   ========================================================= */
-
-function escapeAttribute(value) {
-
-    return escapeHTML(value);
-
-}
-
-
-/* =========================================================
-   31. GLOBAL FUNCTIONS
-   ========================================================= */
-
-window.toggleEventSelection =
-    toggleEventSelection;
-
-window.openEventModal =
-    openEventModal;
-
-window.closeEventModal =
-    closeEventModal;
-
-
-/* =========================================================
-   32. DEBUG
-   ========================================================= */
-
-console.log(
-    "===================================="
-);
-
-console.log(
-    "NEURIX'26 JS READY"
-);
-
-console.log(
-    "Total events:",
-    getAllEvents().length
-);
-
-console.log(
-    "Maximum:",
-    MAX_EVENTS
-);
-
-console.log(
-    "===================================="
-);
