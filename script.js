@@ -315,6 +315,8 @@ document.addEventListener(
 
         initializeParticles();
 
+        initializeScrollAnimations(); // ← ADDED
+
         updateEventUI();
 
         console.log(
@@ -2046,5 +2048,61 @@ function initializeParticles() {
     resize();
 
     animate();
+
+}
+
+
+/* =========================================================
+   31. SCROLL REVEAL ANIMATIONS  ←  ADDED
+   ========================================================= */
+
+function initializeScrollAnimations() {
+
+    const revealObserver = new IntersectionObserver(
+        function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("nx-visible");
+                }
+            });
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+        }
+    );
+
+    const revealSelectors = [
+        ".section-header",
+        ".about-card",
+        ".events-category",
+        ".event-card",
+        ".timeline-item",
+        ".register-info",
+        ".form-glass",
+        ".events-counter",
+        ".footer"
+    ];
+
+    revealSelectors.forEach(function (selector) {
+        document.querySelectorAll(selector).forEach(function (el) {
+            revealObserver.observe(el);
+        });
+    });
+
+    const sectionObserver = new IntersectionObserver(
+        function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("nx-section-visible");
+                }
+            });
+        },
+        { threshold: 0.15 }
+    );
+
+    document.querySelectorAll("section:not(.hero)").forEach(function (section) {
+        sectionObserver.observe(section);
+    });
 
 }
