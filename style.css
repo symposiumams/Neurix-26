@@ -2725,29 +2725,167 @@ section {
     margin-bottom: 20px;
 }
 
+/* =========================================================
+   EVENT DETAILS CONTENT
+   ========================================================= */
+
 .event-modal-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 24px;
+    text-align: left;
+}
 
+
+/* Individual detail section */
+
+.modal-section {
+    width: 100%;
+    padding: 20px 22px;
+    border: 1px solid rgba(212, 175, 55, 0.16);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.025);
+    box-sizing: border-box;
+}
+
+
+/* Section heading */
+
+.modal-section h3 {
+    margin: 0 0 12px;
+    color: var(--gold-primary);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+
+/* Normal paragraph */
+
+.modal-section p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+
+/* Ordered and unordered lists */
+
+.modal-section ol,
+.modal-section ul {
+    margin: 0;
+    padding-left: 22px;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+
+.modal-section li {
+    margin-bottom: 9px;
+    padding-left: 4px;
+    font-size: 0.88rem;
+    line-height: 1.65;
+}
+
+
+.modal-section li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Round cards */
+
+.modal-rounds {
     display: grid;
-
-    grid-template-columns:
-        repeat(3,minmax(0,1fr));
-
-    gap: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
 }
 
-.event-modal-info-item {
 
-    padding: 15px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid var(--border-glass);
-
-    border-radius: var(--radius-md);
+.modal-round {
+    padding: 17px;
+    border-radius: 13px;
+    border: 1px solid rgba(212, 175, 55, 0.12);
+    background: rgba(212, 175, 55, 0.035);
 }
 
+
+.modal-round h4 {
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-size: 0.92rem;
+    line-height: 1.4;
+}
+
+
+.modal-round p {
+    font-size: 0.82rem;
+    line-height: 1.65;
+}
+
+
+/* Scoring / highlights / requirements */
+
+#modalScoring ul,
+#modalHighlights ul,
+#modalRequirements ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+
+#modalScoring li,
+#modalHighlights li,
+#modalRequirements li {
+    position: relative;
+    padding: 10px 12px 10px 14px;
+    margin-bottom: 8px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+
+#modalScoring li:last-child,
+#modalHighlights li:last-child,
+#modalRequirements li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Winner section */
+
+#modalWinner {
+    border-color: rgba(212, 175, 55, 0.28);
+}
+
+
+/* Tagline */
+
+#modalTagline {
+    text-align: center;
+    padding: 18px 20px;
+}
+
+
+#modalTagline blockquote {
+    margin: 0;
+    color: var(--gold-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.7;
+    font-style: italic;
+}
+
+
+/* Description */
+
+#modalDescription {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.82);
+}
 
 /* =========================================================
    27. SCHEDULE
@@ -5323,7 +5461,92 @@ section,
         min-height: 41px;
     }
 }
+/* =========================================================
+   EVENT DETAILS - MOBILE
+   ========================================================= */
 
+@media (max-width: 600px) {
+
+    .event-modal-info {
+        gap: 16px;
+        margin-top: 18px;
+    }
+
+
+    .modal-section {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+
+    .modal-section h3 {
+        font-size: 0.9rem;
+        margin-bottom: 9px;
+    }
+
+
+    .modal-section p {
+        font-size: 0.8rem;
+        line-height: 1.7;
+    }
+
+
+    .modal-section ol,
+    .modal-section ul {
+        padding-left: 19px;
+    }
+
+
+    .modal-section li {
+        font-size: 0.78rem;
+        line-height: 1.6;
+        margin-bottom: 7px;
+    }
+
+
+    /* Rounds become one column */
+
+    .modal-rounds {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+
+    .modal-round {
+        padding: 14px;
+        border-radius: 11px;
+    }
+
+
+    .modal-round h4 {
+        font-size: 0.83rem;
+    }
+
+
+    .modal-round p {
+        font-size: 0.76rem;
+    }
+
+
+    #modalScoring li,
+    #modalHighlights li,
+    #modalRequirements li {
+        padding: 9px 10px;
+        font-size: 0.76rem;
+    }
+
+
+    #modalTagline {
+        padding: 15px;
+    }
+
+
+    #modalTagline blockquote {
+        font-size: 0.82rem;
+        line-height: 1.6;
+    }
+
+}
 /* ---------- 14. SMALL MOBILE 480px ---------- */
 
 @media (max-width: 480px) {
@@ -5472,7 +5695,46 @@ section,
         height: 175px;
     }
 }
+@media (max-width: 360px) {
 
+    .event-modal-content {
+        padding: 15px;
+        border-radius: 18px;
+    }
+
+
+    .event-modal-info {
+        gap: 12px;
+    }
+
+
+    .modal-section {
+        padding: 13px;
+        border-radius: 12px;
+    }
+
+
+    .modal-section h3 {
+        font-size: 0.84rem;
+    }
+
+
+    .modal-section p,
+    .modal-section li {
+        font-size: 0.74rem;
+    }
+
+
+    .modal-round {
+        padding: 12px;
+    }
+
+
+    #modalTagline blockquote {
+        font-size: 0.76rem;
+    }
+
+}
 /* ---------- 15. VERY SMALL 360px ---------- */
 
 @media (max-width: 360px) {
