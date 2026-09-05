@@ -1196,7 +1196,45 @@ const EVENTS = {
             category: "Non-Technical",
             mode: "Team",
             duration: "30–60 Minutes",
-            icon: "🗺️"
+            icon: "🗺️",
+            objective: `
+                Chase the Clue is an engaging, fast-paced event designed to test
+                participants' logical reasoning, problem-solving abilities, speed,
+                and teamwork. Through a progressive series of riddles, puzzles,
+                and interactive clues, teams must demonstrate lateral thinking
+                and tactical speed to navigate through challenges and achieve victory.
+            `,
+
+                procedure: [
+                    `<strong>Pre-Round: Warm-Up Q&A Challenge</strong>
+                    <br>Before Round 1 officially commences, all registered teams will
+                    undergo a preliminary puzzle-solving warm-up session. Teams will
+                    be given a set of 7 riddle-based questions. Answers must be written
+                    on the designated answer sheet. Points earned in this pre-round
+                    directly add to the team's cumulative overall tally.`,
+
+                    `<strong>Round 1: Core Puzzle Solving</strong>
+                    <br>Participating teams engage in a timed lateral-thinking and
+                    puzzle-solving round. Teams must solve complex analytical puzzles
+                    accurately within the allotted timeframe. Top-scoring teams based
+                    on speed and accuracy will qualify for the final round.`,
+
+                    `<strong>Round 2: Clue Navigation & Bottle Hunt</strong>
+                    <br>An active physical clue-hunting stage. Finalist teams receive
+                    structured hints and clues leading them sequentially across
+                    designated campus locations. The main goal is to decode all clues
+                    in sequence to locate the target hidden bottle. The first team to
+                    successfully recover the bottle wins.`
+                ], 
+
+                rules: [
+                    "Teams may consist of 1 to 3 members maximum.",
+                    "All rounds operate under strict time limits enforced by event coordinators.",
+                    "Mobile phones or external reference materials are strictly prohibited during puzzle rounds unless explicitly permitted.",
+                    "For Round 2, participants must strictly remain within designated campus event zones.",
+                    "Misconduct, tampering with hidden clues, or violating campus rules will lead to immediate disqualification.",
+                    "Decisions made by the event coordinators and faculty judges are final and binding."
+                ]
         },
 
 
@@ -2483,15 +2521,12 @@ function initializeEventModal() {
 /* =========================================================
    23. OPEN EVENT MODAL
    ========================================================= */
+
 function openEventModal(id) {
 
-    const event =
-        getEventById(id);
+    const event = getEventById(id);
 
-    const modal =
-        document.querySelector(
-            ".event-modal"
-        );
+    const modal = document.querySelector(".event-modal");
 
     if (!event || !modal) {
         return;
@@ -2500,115 +2535,120 @@ function openEventModal(id) {
 
     /* =========================================================
        BASIC EVENT DETAILS
-       ========================================================= */
+    ========================================================= */
 
     const category =
-        modal.querySelector(
-            "#modalCategory"
-        );
+        modal.querySelector("#modalCategory");
 
     const title =
-        modal.querySelector(
-            "#modalTitle"
-        );
+        modal.querySelector("#modalTitle");
 
     const description =
-        modal.querySelector(
-            "#modalDescription"
-        );
+        modal.querySelector("#modalDescription");
 
 
     /* =========================================================
-       ADDITIONAL EVENT DETAILS
-       ========================================================= */
+       ONLY THESE 3 DETAILS WILL BE DISPLAYED
+    ========================================================= */
 
     const objective =
-        modal.querySelector(
-            "#modalObjective"
-        );
+        modal.querySelector("#modalObjective");
 
     const procedure =
-        modal.querySelector(
-            "#modalProcedure"
-        );
-
-    const rounds =
-        modal.querySelector(
-            "#modalRounds"
-        );
+        modal.querySelector("#modalProcedure");
 
     const rules =
-        modal.querySelector(
-            "#modalRules"
-        );
+        modal.querySelector("#modalRules");
+
+
+    /* =========================================================
+       HIDE / CLEAR ALL OTHER DETAILS
+    ========================================================= */
+
+    const rounds =
+        modal.querySelector("#modalRounds");
 
     const scoring =
-        modal.querySelector(
-            "#modalScoring"
-        );
+        modal.querySelector("#modalScoring");
 
     const highlights =
-        modal.querySelector(
-            "#modalHighlights"
-        );
+        modal.querySelector("#modalHighlights");
 
     const requirements =
-        modal.querySelector(
-            "#modalRequirements"
-        );
+        modal.querySelector("#modalRequirements");
 
     const winner =
-        modal.querySelector(
-            "#modalWinner"
-        );
+        modal.querySelector("#modalWinner");
 
     const tagline =
-        modal.querySelector(
-            "#modalTagline"
-        );
+        modal.querySelector("#modalTagline");
+
+
+    if (rounds) {
+        rounds.innerHTML = "";
+        rounds.style.display = "none";
+    }
+
+    if (scoring) {
+        scoring.innerHTML = "";
+        scoring.style.display = "none";
+    }
+
+    if (highlights) {
+        highlights.innerHTML = "";
+        highlights.style.display = "none";
+    }
+
+    if (requirements) {
+        requirements.innerHTML = "";
+        requirements.style.display = "none";
+    }
+
+    if (winner) {
+        winner.innerHTML = "";
+        winner.style.display = "none";
+    }
+
+    if (tagline) {
+        tagline.innerHTML = "";
+        tagline.style.display = "none";
+    }
 
 
     /* =========================================================
        CATEGORY
-       ========================================================= */
+    ========================================================= */
 
     if (category) {
-
-        category.textContent =
-            event.category || "";
-
+        category.textContent = event.category || "";
     }
 
 
     /* =========================================================
        TITLE
-       ========================================================= */
+    ========================================================= */
 
     if (title) {
-
-        title.textContent =
-            event.name || "";
-
+        title.textContent = event.name || "";
     }
 
 
     /* =========================================================
        DESCRIPTION
-       ========================================================= */
+    ========================================================= */
 
     if (description) {
-
-        description.textContent =
-            event.description || "";
-
+        description.textContent = event.description || "";
     }
 
 
     /* =========================================================
        EVENT OBJECTIVE
-       ========================================================= */
+    ========================================================= */
 
     if (objective) {
+
+        objective.style.display = "block";
 
         if (event.objective) {
 
@@ -2623,17 +2663,17 @@ function openEventModal(id) {
         } else {
 
             objective.innerHTML = "";
-
         }
-
     }
 
 
     /* =========================================================
        EVENT PROCEDURE
-       ========================================================= */
+    ========================================================= */
 
     if (procedure) {
+
+        procedure.style.display = "block";
 
         if (
             Array.isArray(event.procedure) &&
@@ -2661,69 +2701,17 @@ function openEventModal(id) {
         } else {
 
             procedure.innerHTML = "";
-
         }
-
-    }
-
-
-    /* =========================================================
-       ROUNDS
-       ========================================================= */
-
-    if (rounds) {
-
-        if (
-            Array.isArray(event.rounds) &&
-            event.rounds.length > 0
-        ) {
-
-            rounds.innerHTML = `
-                <h3>Two-Round Structure</h3>
-
-                <div class="modal-rounds">
-
-                    ${event.rounds
-                        .map(function (round) {
-
-                            return `
-                                <div class="modal-round">
-
-                                    <h4>
-                                        ${escapeHTML(
-                                            round.name
-                                        )}
-                                    </h4>
-
-                                    <p>
-                                        ${escapeHTML(
-                                            round.description
-                                        )}
-                                    </p>
-
-                                </div>
-                            `;
-
-                        })
-                        .join("")}
-
-                </div>
-            `;
-
-        } else {
-
-            rounds.innerHTML = "";
-
-        }
-
     }
 
 
     /* =========================================================
        RULES & REGULATIONS
-       ========================================================= */
+    ========================================================= */
 
     if (rules) {
+
+        rules.style.display = "block";
 
         if (
             Array.isArray(event.rules) &&
@@ -2734,7 +2722,6 @@ function openEventModal(id) {
                 <h3>Rules & Regulations</h3>
 
                 <ol>
-
                     ${event.rules
                         .map(function (rule) {
 
@@ -2746,224 +2733,42 @@ function openEventModal(id) {
 
                         })
                         .join("")}
-
                 </ol>
             `;
 
         } else {
 
             rules.innerHTML = "";
-
         }
-
-    }
-
-
-    /* =========================================================
-       SCORING SYSTEM
-       ========================================================= */
-
-    if (scoring) {
-
-        if (
-            Array.isArray(event.scoring) &&
-            event.scoring.length > 0
-        ) {
-
-            scoring.innerHTML = `
-                <h3>Scoring System</h3>
-
-                <ul>
-
-                    ${event.scoring
-                        .map(function (score) {
-
-                            return `
-                                <li>
-                                    ${escapeHTML(score)}
-                                </li>
-                            `;
-
-                        })
-                        .join("")}
-
-                </ul>
-            `;
-
-        } else {
-
-            scoring.innerHTML = "";
-
-        }
-
-    }
-
-
-    /* =========================================================
-       EVENT HIGHLIGHTS
-       ========================================================= */
-
-    if (highlights) {
-
-        if (
-            Array.isArray(event.highlights) &&
-            event.highlights.length > 0
-        ) {
-
-            highlights.innerHTML = `
-                <h3>Event Highlights</h3>
-
-                <ul>
-
-                    ${event.highlights
-                        .map(function (highlight) {
-
-                            return `
-                                <li>
-                                    ${escapeHTML(
-                                        highlight
-                                    )}
-                                </li>
-                            `;
-
-                        })
-                        .join("")}
-
-                </ul>
-            `;
-
-        } else {
-
-            highlights.innerHTML = "";
-
-        }
-
-    }
-
-
-    /* =========================================================
-       REQUIREMENTS
-       ========================================================= */
-
-    if (requirements) {
-
-        if (
-            Array.isArray(event.requirements) &&
-            event.requirements.length > 0
-        ) {
-
-            requirements.innerHTML = `
-                <h3>Requirements</h3>
-
-                <ul>
-
-                    ${event.requirements
-                        .map(function (requirement) {
-
-                            return `
-                                <li>
-                                    ${escapeHTML(
-                                        requirement
-                                    )}
-                                </li>
-                            `;
-
-                        })
-                        .join("")}
-
-                </ul>
-            `;
-
-        } else {
-
-            requirements.innerHTML = "";
-
-        }
-
-    }
-
-
-    /* =========================================================
-       WINNER SELECTION
-       ========================================================= */
-
-    if (winner) {
-
-        if (event.winner) {
-
-            winner.innerHTML = `
-                <h3>Winner Selection</h3>
-
-                <p>
-                    ${escapeHTML(event.winner)}
-                </p>
-            `;
-
-        } else {
-
-            winner.innerHTML = "";
-
-        }
-
-    }
-
-
-    /* =========================================================
-       TAGLINE
-       ========================================================= */
-
-    if (tagline) {
-
-        if (event.tagline) {
-
-            tagline.innerHTML = `
-                <blockquote>
-                    ${escapeHTML(event.tagline)}
-                </blockquote>
-            `;
-
-        } else {
-
-            tagline.innerHTML = "";
-
-        }
-
     }
 
 
     /* =========================================================
        EVENT IMAGE
-       ========================================================= */
+    ========================================================= */
 
     const images =
         modal.querySelectorAll(
             ".modal-image-wrapper img"
         );
 
+    images.forEach(function (image) {
 
-    images.forEach(
-        function (image) {
+        image.src =
+            "https://placehold.co/900x550/111111/D4AF37?text=" +
+            encodeURIComponent(event.name);
 
-            image.src =
-                "https://placehold.co/900x550/111111/D4AF37?text=" +
-                encodeURIComponent(
-                    event.name
-                );
+        image.alt =
+            event.name || "Event Image";
 
-            image.alt =
-                event.name || "Event Image";
-
-        }
-    );
+    });
 
 
     /* =========================================================
        OPEN MODAL
-       ========================================================= */
+    ========================================================= */
 
-    modal.classList.add(
-        "active"
-    );
+    modal.classList.add("active");
 
     modal.setAttribute(
         "aria-hidden",
@@ -2973,8 +2778,9 @@ function openEventModal(id) {
     document.body.classList.add(
         "modal-open"
     );
-
 }
+
+
 
 /* =========================================================
    24. CLOSE EVENT MODAL
