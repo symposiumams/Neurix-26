@@ -1322,7 +1322,7 @@ const EVENTS = {
 
         {
             id: "think-link",
-            name: "Think & Connect",
+            name: "Think & link",
 
             description:
                 "A visual picture-connection challenge where teams analyze four sequential image clues, discover the hidden connection and identify the target movie name before time runs out.",
