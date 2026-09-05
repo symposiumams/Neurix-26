@@ -624,8 +624,8 @@ const EVENTS = {
 
 
         {
-            id: "canva-clash",
-            name: "Canva Clash",
+            id: "canvas-clash",
+            name: "Canvas Clash",
 
             description:
                 "Imagine • Innovate • Create the Future — A creative poster design challenge where participants use Canva to visually communicate innovative ideas about the future of Artificial Intelligence.",
@@ -1677,8 +1677,8 @@ const EVENT_PAIRS = {
     "think-link": "paper-presentation",
 
     /* Canva Clash ↔ Web Craft */
-    "canva-clash": "web-craft",
-    "web-craft": "canva-clash",
+    "canvas-clash": "web-craft",
+    "web-craft": "canvas-clash",
 
     /* Ultimate XI ↔ Final Stand */
     "ultimate-xi": "final-stand",
