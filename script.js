@@ -1189,7 +1189,7 @@ const EVENTS = {
         },
 
         {
-            id: "chase-clue",
+            id: "chase-the-clue",
             name: "Chase the Clue",
             description:
                 "Follow the clues, solve the puzzles and race against time to discover the hidden treasure.",
@@ -1206,21 +1206,21 @@ const EVENTS = {
             `,
 
                 procedure: [
-                    `<strong>Pre-Round: Warm-Up Q&A Challenge</strong>
-                    <br>Before Round 1 officially commences, all registered teams will
+                    ` Warm-Up Q&A Challenge
+                   Before Round 1 officially commences, all registered teams will
                     undergo a preliminary puzzle-solving warm-up session. Teams will
                     be given a set of 7 riddle-based questions. Answers must be written
                     on the designated answer sheet. Points earned in this pre-round
                     directly add to the team's cumulative overall tally.`,
 
-                    `<strong>Round 1: Core Puzzle Solving</strong>
-                    <br>Participating teams engage in a timed lateral-thinking and
+                    `Round 1: Core Puzzle Solving
+                    Participating teams engage in a timed lateral-thinking and
                     puzzle-solving round. Teams must solve complex analytical puzzles
                     accurately within the allotted timeframe. Top-scoring teams based
                     on speed and accuracy will qualify for the final round.`,
 
-                    `<strong>Round 2: Clue Navigation & Bottle Hunt</strong>
-                    <br>An active physical clue-hunting stage. Finalist teams receive
+                    `Round 2: Clue Navigation & Bottle Hunt
+                    An active physical clue-hunting stage. Finalist teams receive
                     structured hints and clues leading them sequentially across
                     designated campus locations. The main goal is to decode all clues
                     in sequence to locate the target hidden bottle. The first team to
@@ -1664,26 +1664,31 @@ const EVENTS = {
 
 const EVENT_PAIRS = {
 
-    "prompt-battle": "think-link",
-    "think-link": "prompt-battle",
+    /* Prompt Battle ↔ Chase the Clue */
+    "prompt-clash": "chase-the-clue",
+    "chase-the-clue": "prompt-clash",
 
-    "debug-arena": "paper-presentation",
-    "paper-presentation": "debug-arena",
+    /* Debug Arena ↔ BGM Blitz */
+    "debug-arena": "bgm-blitz",
+    "bgm-blitz": "debug-arena",
 
-    "canvas-clash": "chase-clue",
-    "chase-clue": "canvas-clash",
+    /* Paper Presentation ↔ Think & Connect */
+    "paper-presentation": "think-link",
+    "think-link": "paper-presentation",
 
-    "web-craft": "bgm-blitz",
-    "bgm-blitz": "web-craft",
+    /* Canva Clash ↔ Web Craft */
+    "canva-clash": "web-craft",
+    "web-craft": "canva-clash",
 
+    /* Ultimate XI ↔ Final Stand */
     "ultimate-xi": "final-stand",
     "final-stand": "ultimate-xi",
 
-    "frames-ams": "corporate-walk",
-    "corporate-walk": "frames-ams"
+    /* Frames of AMS ↔ Corporate Walk */
+    "frames-of-ams": "corporate-walk",
+    "corporate-walk": "frames-of-ams"
 
 };
-
 
 /* =========================================================
    04. STATE
